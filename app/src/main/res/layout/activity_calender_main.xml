@@ -33,12 +33,13 @@
         android:layout_width="176dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="33dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintLeft_toLeftOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/edit"
+        app:layout_constraintLeft_toLeftOf="@+id/edit"
         android:text="Create Appointment  "
         android:textStyle="bold"
         android:textAllCaps="false"
         android:background="#009688"
+        android:id="@+id/create"
         />
 
 
@@ -49,12 +50,13 @@
         android:layout_width="176dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintRight_toRightOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/delete"
+        app:layout_constraintRight_toRightOf="@+id/delete"
         android:text="Move Appointment  "
         android:textAllCaps="false"
         android:textStyle="bold"
-        android:background="#03A9F4"/>
+        android:background="#03A9F4"
+        android:id="@+id/move"/>
 
 
 
@@ -65,12 +67,13 @@
         android:layout_marginBottom="29dp"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/button"
+        android:id="@+id/edit"
         android:textStyle="bold"
         android:text="View/Edit Appointment  "
         android:textAllCaps="false"
         android:background="#FFC107"
-        android:layout_marginStart="16dp" />
+        android:layout_marginStart="16dp"
+        />
 
 
 
@@ -83,7 +86,7 @@
         android:layout_marginBottom="30dp"
         android:layout_marginRight="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/button2"
+        android:id="@+id/delete"
         android:textStyle="bold"
         android:text="Delete Appointment  "
         android:textAllCaps="false"
