@@ -3,6 +3,7 @@ package com.pavithbuddhima.myschedule;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,10 +14,18 @@ import android.widget.Toast;
 public class CalenderMain extends AppCompatActivity implements View.OnClickListener {
 
 
+    static  int calDay;
+    static  int calMonth;
+    static  int calYear;
+
+
+
     Button createNew ;
     Button viewEdit ;
     Button move ;
     Button delete ;
+    Button delAll;
+    Button delSel;
     CalendarView datePicker;
 
 
@@ -31,6 +40,8 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
         move = (Button) findViewById(R.id.move);
         delete = (Button) findViewById(R.id.delete);
         datePicker = (CalendarView) findViewById(R.id.pickdate);
+        delAll = (Button) findViewById(R.id.delAll);
+        delSel = (Button) findViewById(R.id.delSel);
 
 
         createNew.setOnClickListener(this);
@@ -49,6 +60,11 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
                     int          year,
                     int          month,
                     int          dayOfMonth ) {
+                calDay =dayOfMonth;
+                calMonth = month ;
+                calYear = year;
+
+
 
                 Toast.makeText(getApplicationContext(), ""+year+ " / " + (month+1) + " / " + dayOfMonth+" selected", Toast.LENGTH_SHORT).show();
 
@@ -79,7 +95,38 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
 
             case R.id.delete :
 
+
+                AlertDialog.Builder mbuild = new AlertDialog.Builder(CalenderMain.this);
+                View mView = getLayoutInflater().inflate(R.layout.delete_option, null);
+                final Button delAll = (Button) mView.findViewById(R.id.delAll);
+                final Button delSel = (Button) mView.findViewById(R.id.delSel);
+// set action listners for dialog box buttons
+                delAll.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+
+
+                    }
+                });
+
+
+                delSel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+
+
+                    }
+                });
+//show the dialog box
+                mbuild.setView(mView);
+                AlertDialog dialog = mbuild.create();
+                dialog.show();
+
+
                 break;
+
 
             case R.id.searchView :
 
