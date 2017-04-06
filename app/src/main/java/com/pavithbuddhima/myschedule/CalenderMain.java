@@ -82,6 +82,10 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
 
             case R.id.create :
                 Intent createAppoint = new Intent(this,CreateAppoinment.class);
+                createAppoint.putExtra("year",calYear);
+                createAppoint.putExtra("month",calMonth);
+                createAppoint.putExtra("day",calDay);
+
                 startActivity(createAppoint);
 
                 break;
