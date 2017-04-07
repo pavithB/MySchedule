@@ -31,6 +31,9 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
     CalendarView datePicker;
 
 
+    AppoinmentDataBase handleDB;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +55,7 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
         delete.setOnClickListener(this);
 
 
-
+        handleDB = new AppoinmentDataBase(this, null, null, 1);
 
 
 
@@ -113,7 +116,7 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onClick(View view) {
 
-
+                        handleDB.deleteAll(date);
 
                     }
                 });

@@ -80,15 +80,20 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
 
         SQLiteDatabase mydb = getWritableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
+/*        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
                 COLOUMN_TITLE + " = \" " + appoinment.getTitle() + " \" " + " AND " +
-                COLOUMN_DATE + " = \" " + appoinment.getDate() + " \"";
+                COLOUMN_DATE + " = \" " + appoinment.getDate() + " \"";*/
+
+        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
+                COLOUMN_TITLE + " = \" " + appoinment.getTitle() + " \"";
+
+
 
         Cursor pointer = mydb.rawQuery(query,null);
 
 //        mydb.close();
 
-        if ( pointer == null /*|| !pointer.moveToFirst()*/){
+        if ( pointer == null || !pointer.moveToFirst()){
 
             return true;
 
@@ -129,6 +134,12 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
 
         mydb.execSQL("DELETE FROM " + "TABLE_MY_APPOINMENTS" + " WHERE " + COLOUMN_DATE + "=\"" + date +"\";"   );
 //        mydb.close();
+
+
+
+
+
+
     }
 //    delete single appoinment goes here
 
