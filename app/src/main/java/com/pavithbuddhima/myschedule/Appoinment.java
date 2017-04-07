@@ -10,6 +10,9 @@ public class Appoinment {
 
     private int id;
 
+    private String date;
+    private String time;
+
     private int year;
     private int month;
     private int day;
@@ -20,14 +23,12 @@ public class Appoinment {
     private String discription;
 
 
-    public Appoinment(int year, int month, int day, int hour, int minute, String title, String discription) {
-        this.year = year;
-        this.month = month;
-        this.day = day;
-        this.hour = hour;
-        this.minute = minute;
+    public Appoinment(String title, String discription, String date, String time ) {
+
         this.title = title;
         this.discription = discription;
+        this.date = date;
+        this.time = time;
     }
 
 
@@ -37,6 +38,22 @@ public class Appoinment {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public int getYear() {

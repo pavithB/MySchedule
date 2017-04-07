@@ -18,6 +18,8 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
     static  int calMonth;
     static  int calYear;
 
+    static  String date;
+
 
 
     Button createNew ;
@@ -67,7 +69,7 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
 
 
                 Toast.makeText(getApplicationContext(), ""+year+ " / " + (month+1) + " / " + dayOfMonth+" selected", Toast.LENGTH_SHORT).show();
-
+                date = ""+year+ " / " + (month+1) + " / " + dayOfMonth ;
             }
 
 
@@ -85,6 +87,8 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
                 createAppoint.putExtra("year",calYear);
                 createAppoint.putExtra("month",calMonth);
                 createAppoint.putExtra("day",calDay);
+                createAppoint.putExtra("date",date);
+
 
                 startActivity(createAppoint);
 
