@@ -88,7 +88,7 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
 
 //        mydb.close();
 
-        if ( pointer == null || !pointer.moveToFirst()){
+        if ( pointer == null /*|| !pointer.moveToFirst()*/){
 
             return true;
 
@@ -116,7 +116,7 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
         mydb.insert(TABLE_MY_APPOINMENTS,null,values);
         mydb.close();
 
-     return appoinment.getTime()+" " +appoinment.getTitle()+" " +appoinment.getDiscription()+" " + appoinment.getTime() ;
+     return "time: "+appoinment.getTime()+" title:" +appoinment.getTitle()+" dis:" +appoinment.getDiscription()+" date:" + appoinment.getDate() ;
 
 
     }

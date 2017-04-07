@@ -54,13 +54,15 @@ public class CreateAppoinment extends AppCompatActivity {
 
                 selTime = "" + time.getCurrentHour() + ":" + time.getCurrentMinute();
 
-            Appoinment newAppoinment = new Appoinment(title.getText().toString(),discription.getText().toString(),selDate,selTime);
+                Appoinment newAppoinment = new Appoinment(title.getText().toString(), discription.getText().toString(), selDate, selTime);
 
-             String x =  handleDB.createAppoinment(newAppoinment);
+                if(handleDB.checkTitle(newAppoinment)) {
+
+                    String x = handleDB.createAppoinment(newAppoinment);
 
 
-                Toast.makeText(getApplicationContext(),x,Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getApplicationContext(), x, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
