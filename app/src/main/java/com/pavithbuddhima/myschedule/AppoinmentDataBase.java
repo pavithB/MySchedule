@@ -116,7 +116,7 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
         mydb.insert(TABLE_MY_APPOINMENTS,null,values);
         mydb.close();
 
-     return appoinment.getTime();
+     return appoinment.getTime()+" " +appoinment.getTitle()+" " +appoinment.getDiscription()+" " + appoinment.getTime() ;
 
 
     }
