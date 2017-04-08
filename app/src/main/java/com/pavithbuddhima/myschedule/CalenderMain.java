@@ -18,7 +18,7 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
     static  int calMonth;
     static  int calYear;
 
-    static  String date;
+    static  String date = "un";
 
 
 
@@ -81,77 +81,81 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public void onClick(View v){
+    public void onClick(View v) {
+        if (date.equals("un")) {
 
-        switch (v.getId()){
+            Toast.makeText(getApplicationContext(), "PLEASE SELECT A DATE FIRST", Toast.LENGTH_SHORT).show();
 
-            case R.id.create :
-                Intent createAppoint = new Intent(this,CreateAppoinment.class);
-                createAppoint.putExtra("year",calYear);
-                createAppoint.putExtra("month",calMonth);
-                createAppoint.putExtra("day",calDay);
-                createAppoint.putExtra("date",date);
+        } else {
 
+            switch (v.getId()) {
 
-                startActivity(createAppoint);
-
-                break;
-            case R.id.move :
-
-                break;
-
-            case R.id.viewedit :
-                Intent viewEdit = new Intent(this,ViewAppointment.class);
-                viewEdit.putExtra("date",date);
-                startActivity(viewEdit);
-
-                break;
-
-            case R.id.delete :
+                case R.id.create:
+                    Intent createAppoint = new Intent(this, CreateAppoinment.class);
+                    createAppoint.putExtra("year", calYear);
+                    createAppoint.putExtra("month", calMonth);
+                    createAppoint.putExtra("day", calDay);
+                    createAppoint.putExtra("date", date);
 
 
-                AlertDialog.Builder mbuild = new AlertDialog.Builder(CalenderMain.this);
-                View mView = getLayoutInflater().inflate(R.layout.delete_option, null);
-                final Button delAll = (Button) mView.findViewById(R.id.delAll);
-                final Button delSel = (Button) mView.findViewById(R.id.delSel);
+                    startActivity(createAppoint);
+
+                    break;
+                case R.id.move:
+
+                    break;
+
+                case R.id.viewedit:
+                    Intent viewEdit = new Intent(this, ViewAppointment.class);
+                    viewEdit.putExtra("date", date);
+                    startActivity(viewEdit);
+
+                    break;
+
+                case R.id.delete:
+
+
+                    AlertDialog.Builder mbuild = new AlertDialog.Builder(CalenderMain.this);
+                    View mView = getLayoutInflater().inflate(R.layout.delete_option, null);
+                    final Button delAll = (Button) mView.findViewById(R.id.delAll);
+                    final Button delSel = (Button) mView.findViewById(R.id.delSel);
 // set action listners for dialog box buttons
-                delAll.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                    delAll.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-                        handleDB.deleteAll(date);
+                            handleDB.deleteAll(date);
 
-                    }
-                });
-
-
-                delSel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                        }
+                    });
 
 
+                    delSel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-                    }
-                });
+
+                        }
+                    });
 //show the dialog box
-                mbuild.setView(mView);
-                AlertDialog dialog = mbuild.create();
-                dialog.show();
+                    mbuild.setView(mView);
+                    AlertDialog dialog = mbuild.create();
+                    dialog.show();
 
 
-                break;
+                    break;
 
 
-            case R.id.searchView :
+                case R.id.searchView:
 
-                break;
+                    break;
+
+            }
 
         }
 
+
     }
-
-
-
 
 
 
