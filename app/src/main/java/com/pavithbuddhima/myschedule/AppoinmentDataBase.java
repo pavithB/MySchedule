@@ -31,6 +31,8 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
 
     public static final String COLOUMN_DISCRIPTION ="appoinmentDiscription";
 
+    public static final String COLOUMN_MATH_TIME ="appoinmentMathTime";
+
 
 
 
@@ -58,7 +60,8 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
                 COLOUMN_DATE + " TEXT, " +
                 COLOUMN_TIME + " DATETIME, " +
                 COLOUMN_TITLE + " TEXT, " +
-                COLOUMN_DISCRIPTION + " TEXT " +
+                COLOUMN_DISCRIPTION + " TEXT, " +
+                COLOUMN_MATH_TIME + " DATETIME " +
 
                 ");";
 
@@ -116,6 +119,8 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
         values.put(COLOUMN_TIME,appoinment.getTime());
         values.put(COLOUMN_TITLE,appoinment.getTitle());
         values.put(COLOUMN_DISCRIPTION,appoinment.getDiscription());
+        values.put(COLOUMN_MATH_TIME,appoinment.getMathTime());
+
 
         SQLiteDatabase mydb = getWritableDatabase();
         mydb.insert(TABLE_MY_APPOINMENTS,null,values);
@@ -163,7 +168,7 @@ public void deleteSelect(String date , String title){
         SQLiteDatabase mydb = getWritableDatabase();
 
         String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
-                COLOUMN_DATE + " = \"" + date +  "\" ORDER BY " + COLOUMN_TIME +" ASC" ;
+                COLOUMN_DATE + " = \"" + date +  "\" ORDER BY " + COLOUMN_MATH_TIME +" ASC" ;
 
 //        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS ;
 

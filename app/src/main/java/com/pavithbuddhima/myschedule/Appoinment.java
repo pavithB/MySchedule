@@ -23,13 +23,22 @@ public class Appoinment {
     private String discription;
 
 
-    public Appoinment(String title, String discription, String date, String time ) {
+    private double mathTime;
+
+
+    public Appoinment(String title, String discription, String date, String time, double mathTime) {
 
         this.title = title;
         this.discription = discription;
         this.date = date;
         this.time = time;
+        this.mathTime = mathTime;
 
+    }
+
+
+    public double getMathTime() {
+        return mathTime;
     }
 
 

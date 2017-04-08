@@ -102,13 +102,19 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
 
                     break;
                 case R.id.move:
+                    Intent move = new Intent(this, ViewAppointment.class);
+                    move.putExtra("date", date);
+                    move.putExtra("option","move");
+                    startActivity(move);
 
                     break;
 
                 case R.id.viewedit:
                     Intent viewEdit = new Intent(this, ViewAppointment.class);
                     viewEdit.putExtra("date", date);
+                    viewEdit.putExtra("option","view");
                     startActivity(viewEdit);
+
 
                     break;
 
@@ -133,6 +139,11 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
                     delSel.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
+                            Intent deleteOne = new Intent(CalenderMain.this, ViewAppointment.class);
+                            deleteOne.putExtra("date", date);
+                            deleteOne.putExtra("option","delete");
+                            startActivity(deleteOne);
 
 
                         }

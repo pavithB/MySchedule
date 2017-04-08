@@ -11,8 +11,9 @@ import android.widget.Toast;
 
 public class CreateAppoinment extends AppCompatActivity {
 
-    static int year;
-    static int month;
+    static double mathTime;
+    static int hour;
+    static int minute;
     static int day;
     static String date;
 
@@ -51,10 +52,14 @@ public class CreateAppoinment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                hour= time.getCurrentHour() ;
+                minute = time.getCurrentMinute();
 
-                selTime = "" + time.getCurrentHour() + ":" + time.getCurrentMinute();
+                mathTime =  (hour*60) + minute ;
 
-                Appoinment newAppoinment = new Appoinment(title.getText().toString(), discription.getText().toString(), selDate, selTime);
+                selTime = "" + hour + ":" +minute;
+
+                Appoinment newAppoinment = new Appoinment(title.getText().toString(), discription.getText().toString(), selDate, selTime, mathTime);
 
                 if(handleDB.checkTitle(newAppoinment)) {
 
