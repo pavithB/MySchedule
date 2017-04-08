@@ -163,7 +163,7 @@ public void deleteSelect(String date , String title){
         SQLiteDatabase mydb = getWritableDatabase();
 
         String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
-                COLOUMN_DATE + " = \"" + date +  "\"";
+                COLOUMN_DATE + " = \"" + date +  "\" ORDER BY " + COLOUMN_TIME +" DESC" ;
 
 //        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS ;
 
