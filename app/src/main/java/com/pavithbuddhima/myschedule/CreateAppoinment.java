@@ -58,10 +58,16 @@ public class CreateAppoinment extends AppCompatActivity {
 
                 if(handleDB.checkTitle(newAppoinment)) {
 
-                    String x = handleDB.createAppoinment(newAppoinment);
+                    String adedTittle = handleDB.createAppoinment(newAppoinment);
 
 
-                    Toast.makeText(getApplicationContext(), x, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), adedTittle, Toast.LENGTH_SHORT).show();
+
+                    Intent home = new Intent(CreateAppoinment.this,CalenderMain.class);
+                    startActivity(home);
+
+                }else{
+                    Toast.makeText(getApplicationContext(),title.getText().toString() +" already exists, please choose a diﬀerent event title", Toast.LENGTH_LONG).show();
                 }
             }
         });

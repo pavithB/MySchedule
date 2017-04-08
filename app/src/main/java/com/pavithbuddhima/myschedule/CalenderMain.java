@@ -101,6 +101,9 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.viewedit :
+                Intent viewEdit = new Intent(this,ViewAppointment.class);
+                viewEdit.putExtra("date",date);
+                startActivity(viewEdit);
 
                 break;
 

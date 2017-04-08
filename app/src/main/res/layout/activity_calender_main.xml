@@ -29,26 +29,26 @@
 
 
     <Button
-        android:layout_width="176dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
-        app:layout_constraintBottom_toTopOf="@+id/viewedit"
         app:layout_constraintLeft_toLeftOf="@+id/viewedit"
         android:text="Create Appointment  "
         android:textStyle="bold"
         android:textAllCaps="false"
         android:background="#009688"
         android:id="@+id/create"
-        android:layout_marginLeft="0dp" />
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="41dp"
+        app:layout_constraintBottom_toTopOf="@+id/viewedit" />
 
 
 
 
 
     <Button
-        android:layout_width="176dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="41dp"
         app:layout_constraintBottom_toTopOf="@+id/delete"
         app:layout_constraintRight_toRightOf="@+id/delete"
         android:text="Move Appointment  "
@@ -56,15 +56,16 @@
         android:textStyle="bold"
         android:background="#03A9F4"
         android:id="@+id/move"
-        android:layout_marginRight="0dp" />
+        android:layout_marginRight="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/create"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="1.0" />
 
 
 
     <Button
-        android:layout_width="176dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:id="@+id/viewedit"
@@ -73,17 +74,21 @@
         android:textAllCaps="false"
         android:background="#FFC107"
         android:layout_marginStart="16dp"
-        />
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/delete"
+        app:layout_constraintTop_toTopOf="@+id/delete"
+        android:layout_marginTop="0dp"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 
 
 
     <Button
-        android:layout_width="176dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="17dp"
         android:layout_marginRight="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/delete"
@@ -91,7 +96,10 @@
         android:text="Delete Appointment  "
         android:textAllCaps="false"
         android:background="#F44336"
-        android:layout_marginEnd="16dp" />
+        android:layout_marginEnd="16dp"
+        app:layout_constraintLeft_toRightOf="@+id/viewedit"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="1.0" />
 
     <SearchView
 

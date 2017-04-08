@@ -80,12 +80,12 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
 
         SQLiteDatabase mydb = getWritableDatabase();
 
-/*        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
-                COLOUMN_TITLE + " = \" " + appoinment.getTitle() + " \" " + " AND " +
-                COLOUMN_DATE + " = \" " + appoinment.getDate() + " \"";*/
+        String query = " SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
+                COLOUMN_TITLE + "=\'" + appoinment.getTitle() + "\'" + " AND " +
+                COLOUMN_DATE + "=\'" + appoinment.getDate() + "\'";
 
-        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
-                COLOUMN_TITLE + " = \" " + appoinment.getTitle() + " \"";
+//        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
+//                COLOUMN_TITLE + " = \"" + appoinment.getTitle() + " \"";
 
 
 
@@ -121,8 +121,8 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
         mydb.insert(TABLE_MY_APPOINMENTS,null,values);
         mydb.close();
 
-     return "time: "+appoinment.getTime()+" title:" +appoinment.getTitle()+" dis:" +appoinment.getDiscription()+" date:" + appoinment.getDate() ;
-
+//     return "time: "+appoinment.getTime()+" title:" +appoinment.getTitle()+" dis:" +appoinment.getDiscription()+" date:" + appoinment.getDate() ;
+        return appoinment.getTitle() + " added";
 
     }
 
@@ -132,17 +132,25 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
 
         SQLiteDatabase mydb = getWritableDatabase();
 
-        mydb.execSQL("DELETE FROM " + "TABLE_MY_APPOINMENTS" + " WHERE " + COLOUMN_DATE + "=\"" + date +"\";"   );
-//        mydb.close();
-
-
-
-
+        mydb.execSQL("DELETE FROM " + TABLE_MY_APPOINMENTS + " WHERE " + COLOUMN_DATE + "=\"" + date +"\";"   );
+        mydb.close();
 
 
     }
 //    delete single appoinment goes here
 
+
+public void deleteSelect(String date , String title){
+
+    SQLiteDatabase mydb = getWritableDatabase();
+
+    mydb.execSQL("DELETE FROM " + TABLE_MY_APPOINMENTS + " WHERE "  +
+            COLOUMN_TITLE + "=\'" + title + "\'" + " AND " +
+            COLOUMN_DATE + "=\'" + date + "\';"  );
+    mydb.close();
+
+
+}
 
 
 
@@ -155,14 +163,16 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
         SQLiteDatabase mydb = getWritableDatabase();
 
         String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
-                COLOUMN_DATE + " = \" " + date +  " \"";
+                COLOUMN_DATE + " = \"" + date +  "\"";
+
+//        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS ;
 
         Cursor pointer = mydb.rawQuery(query,null);
         pointer.moveToFirst();
 
         while(!pointer.isAfterLast()){
 
-            if(pointer.getString(pointer.getColumnIndex("appoinmentDate"))!=null){
+//            if(pointer.getString(pointer.getColumnIndex("appoinmentDate"))!=null){
 
                 index++;
 
@@ -171,7 +181,7 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
 
                 viewString += index + ".  " + tempTime + "  " + tempTitle;
                 viewString +="\n";
-            }
+//            }
 
             pointer.moveToNext();
 
@@ -180,5 +190,6 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
         mydb.close();
 
         return viewString;
+//        return  "date" ;
     }
 }
