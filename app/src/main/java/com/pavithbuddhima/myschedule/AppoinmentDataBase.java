@@ -145,14 +145,59 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
 //    delete single appoinment goes here
 
 
-public void deleteSelect(String date , String title){
+public String deleteSelect(String date , int userSelected , boolean titleOnly){
 
     SQLiteDatabase mydb = getWritableDatabase();
 
-    mydb.execSQL("DELETE FROM " + TABLE_MY_APPOINMENTS + " WHERE "  +
-            COLOUMN_TITLE + "=\'" + title + "\'" + " AND " +
-            COLOUMN_DATE + "=\'" + date + "\';"  );
+//    mydb.execSQL("DELETE FROM " + TABLE_MY_APPOINMENTS + " WHERE "  +
+//            COLOUMN_TITLE + "=\'" + title + "\'" + " AND " +
+//            COLOUMN_DATE + "=\'" + date + "\';"  );
+
+
+    int index=1;
+    String title = "200" ;
+
+
+
+    String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
+            COLOUMN_DATE + " = \"" + date +  "\" ORDER BY " + COLOUMN_MATH_TIME +" ASC" ;
+
+
+    Cursor pointer = mydb.rawQuery(query,null);
+    pointer.moveToFirst();
+
+    while(!pointer.isAfterLast()){
+
+//            if(pointer.getString(pointer.getColumnIndex("appoinmentDate"))!=null){
+
+        String tempTitle = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
+
+        if(index == userSelected){
+
+            if(titleOnly){
+                title = tempTitle ;
+            }else {
+
+                mydb.execSQL("DELETE FROM " + TABLE_MY_APPOINMENTS + " WHERE " + COLOUMN_TITLE + "=\"" + tempTitle + "\";");
+
+            }
+            break;
+            }else{
+            index++;
+
+        }
+
+
+        pointer.moveToNext();
+
+    }
+
     mydb.close();
+    if(pointer.isAfterLast()){
+        return "404" ;
+    }else{
+        return title;
+    }
 
 
 }

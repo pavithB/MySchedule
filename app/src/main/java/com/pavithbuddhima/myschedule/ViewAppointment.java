@@ -1,23 +1,30 @@
 package com.pavithbuddhima.myschedule;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class ViewAppointment extends AppCompatActivity {
 
     AppoinmentDataBase handleDB;
 
-    TextView  viewHead , inform;
+    TextView  viewHead , inform ;
 
     EditText viewAll , selectAppoinment;
 
-    Button btnSelect;
+    Button btnSelect ;
 
     String date , header , footer;
+
+   static int selection = 99;
 
 
 
@@ -38,6 +45,9 @@ public class ViewAppointment extends AppCompatActivity {
         inform = (TextView) findViewById(R.id.informText) ;
         btnSelect = (Button) findViewById(R.id.btnSelectAppointment);
         selectAppoinment = (EditText) findViewById(R.id.selectAppoinment);
+
+
+
 
 
 
@@ -63,7 +73,127 @@ public class ViewAppointment extends AppCompatActivity {
 
         }
 
+        btnSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                selection = Integer.parseInt(selectAppoinment.getText().toString());
+                if(selection == 99){
+
+//                    Toast.makeText(getApplicationContext(), "PLEASE SELECT A APPOINTMENT BEFORE PRESS THE BUTTON " , Toast.LENGTH_LONG).show();
+
+                }else {
+
+                    switch (header) {
+
+                        case "view":
+
+
+
+                            break;
+                        case "delete":
+
+                            AlertDialog.Builder mbuild = new AlertDialog.Builder(ViewAppointment.this);
+                            View mView = getLayoutInflater().inflate(R.layout.confirm_delete, null);
+                           final Button confirmNo =(Button) findViewById(R.id.confirmNo);
+                           final Button confirmYes =(Button) findViewById(R.id.confirmYes);
+                           final TextView confirmMsg = (TextView) findViewById(R.id.confirmDeleteText);
+
+                            String confirmDel = handleDB.deleteSelect(date, selection,true);
+
+                            confirmMsg.setText("Would you like to delete event \" "+ confirmDel + " \"" );
+// set action listners for dialog box buttons
+                            confirmYes.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    handleDB.deleteSelect(date, selection,false);
+                                    showappointment();
+                                    selectAppoinment.setText("");
+
+
+                                }
+                            });
+
+
+                            confirmNo.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    showappointment();
+                                    selectAppoinment.setText("");
+
+
+
+                                }
+                            });
+//show the dialog box
+                            mbuild.setView(mView);
+                            AlertDialog dialog = mbuild.create();
+                            dialog.show();
+
+
+                            break;
+                        case "move":
+
+
+                            break;
+
+
+                    }
+
+
+
+                }
+
+
+            }
+        });
+
+
+
+
+
+
     }
+
+
+
+
+/*    public void selectAction(View view) {
+
+        selection = Integer.parseInt(selectAppoinment.getText().toString());
+        if(selection == 99){
+
+            Toast.makeText(getApplicationContext(), "PLEASE SELECT A APPOINTMENT BEFORE PRESS THE BUTTON " , Toast.LENGTH_LONG).show();
+
+        }else {
+
+            switch (header) {
+
+                case "view":
+
+
+                    break;
+                case "delete":
+
+                    handleDB.deleteSelect(date, selection);
+                    showappointment();
+                    selectAppoinment.setText("");
+                    break;
+                case "move":
+
+
+                    break;
+
+
+            }
+
+
+
+        }
+
+    }*/
 
     public void showappointment(){
 
