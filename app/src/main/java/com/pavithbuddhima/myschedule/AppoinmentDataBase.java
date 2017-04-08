@@ -31,8 +31,6 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
 
     public static final String COLOUMN_DISCRIPTION ="appoinmentDiscription";
 
-    public static final String COLOUMN_MATH_TIME="appoinmentMathTime";
-
 
 
 
@@ -58,10 +56,9 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
 
                 COLOUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLOUMN_DATE + " TEXT, " +
-                COLOUMN_TIME + " TEXT, " +
+                COLOUMN_TIME + " DATETIME, " +
                 COLOUMN_TITLE + " TEXT, " +
                 COLOUMN_DISCRIPTION + " TEXT " +
-                COLOUMN_MATH_TIME + "INTEGER" +
 
                 ");";
 
@@ -103,7 +100,6 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
         }else{
 
             return false;
-
         }
 
     }
