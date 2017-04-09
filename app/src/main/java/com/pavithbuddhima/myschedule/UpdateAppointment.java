@@ -33,11 +33,11 @@ public class UpdateAppointment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_appoinment);
+        setContentView(R.layout.activity_update_appointment);
 
 
         Intent getdate = getIntent();
-        selDate = getdate.getStringExtra("date");
+        date = getdate.getStringExtra("date");
         preTitle = getdate.getStringExtra("title");
 
         title = (EditText) findViewById(R.id.titleUpdat);
@@ -51,8 +51,11 @@ public class UpdateAppointment extends AppCompatActivity {
 
 
 
-            Toast.makeText(getApplicationContext(), "update appointment", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "update appointment", Toast.LENGTH_LONG).show();
 
+
+//        retriveData();
+/*
 //            int retriveHour ;
 //            int retriveMinute ;
             String retriveTitle = handleDB.retriveAppoinment(date,preTitle,1) ;
@@ -67,6 +70,7 @@ public class UpdateAppointment extends AppCompatActivity {
 
             time.setCurrentHour(retriveHour);
             time.setCurrentMinute(retriveMinute);
+*/
 
 
 
@@ -78,25 +82,50 @@ public class UpdateAppointment extends AppCompatActivity {
 
 
 
-                    hour = time.getCurrentHour();
+                hour = time.getCurrentHour();
 
-                    minute = time.getCurrentMinute();
+                minute = time.getCurrentMinute();
 
-                    mathTime = (hour * 60) + minute;
+                mathTime = (hour * 60) + minute;
 
-                    selTime = "" + hour + ":" + minute;
+                selTime = "" + hour + ":" + minute;
 
-                    boolean updateResult = handleDB.updateAppointment(date ,preTitle ,title.getText().toString() , selTime ,discription.getText().toString(),mathTime);
-
-                    if(updateResult){
-                        Toast.makeText(getApplicationContext(), "Update " + preTitle +" appoitment SUCCESSFULL", Toast.LENGTH_LONG).show();
-                    }else{
-                        Toast.makeText(getApplicationContext(), " something went WRONG", Toast.LENGTH_LONG).show();
-                    }
+                boolean updateResult = handleDB.updateAppointment(date ,preTitle ,title.getText().toString() , selTime ,discription.getText().toString(),mathTime);
+//                Toast.makeText(getApplicationContext(), preTitle, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), date, Toast.LENGTH_LONG).show();
+                if(updateResult){
+                    Toast.makeText(getApplicationContext(), "Update " + preTitle +" appoitment SUCCESSFULL", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), " something went WRONG", Toast.LENGTH_LONG).show();
+                }
 
 
             }
         });
+
+
+    }
+
+
+    public void retriveData(){
+
+
+
+        //    int retriveHour ;
+//            int retriveMinute ;
+
+        String retriveTitle = handleDB.retriveAppoinment(date,preTitle,1) ;
+        String retriveDis = handleDB.retriveAppoinment(date,preTitle,2);
+
+
+        title.setText(retriveTitle);
+        discription.setText(retriveDis);
+
+        int retriveHour = handleDB.retriveTime(date,preTitle,1);
+        int retriveMinute = handleDB.retriveTime(date,preTitle,2);
+
+        time.setCurrentHour(retriveHour);
+        time.setCurrentMinute(retriveMinute);
 
 
     }

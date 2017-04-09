@@ -332,8 +332,8 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
 
 
 
-            mydb.update(TABLE_MY_APPOINMENTS, values , COLOUMN_TITLE + "='" + preTitle + "'" + " AND " +
-                        COLOUMN_DATE + "='" + date + "'" ,null );
+            mydb.update(TABLE_MY_APPOINMENTS, values , COLOUMN_TITLE + "=\'" + preTitle + "\'" + " AND " +
+                        COLOUMN_DATE + "=\'" + date + "\'" ,null );
 
             mydb.close();
             pointer.close();
