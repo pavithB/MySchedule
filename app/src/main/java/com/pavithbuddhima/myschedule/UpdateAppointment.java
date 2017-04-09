@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class UpdateAppoinyment extends AppCompatActivity {
+public class UpdateAppointment extends AppCompatActivity {
 
     static double mathTime;
     static int hour;
@@ -50,9 +50,6 @@ public class UpdateAppoinyment extends AppCompatActivity {
 
 
 
-        if((preTitle.equals("404"))) {
-            Toast.makeText(getApplicationContext(), "create appointment", Toast.LENGTH_LONG).show();
-        }else{
 
             Toast.makeText(getApplicationContext(), "update appointment", Toast.LENGTH_LONG).show();
 
@@ -71,7 +68,7 @@ public class UpdateAppoinyment extends AppCompatActivity {
             time.setCurrentHour(retriveHour);
             time.setCurrentMinute(retriveMinute);
 
-        }
+
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -79,32 +76,7 @@ public class UpdateAppoinyment extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (preTitle.equals("404")){
 
-                    hour = time.getCurrentHour();
-
-                    minute = time.getCurrentMinute();
-
-                    mathTime = (hour * 60) + minute;
-
-                    selTime = "" + hour + ":" + minute;
-
-                    Appoinment newAppoinment = new Appoinment(title.getText().toString(), discription.getText().toString(), selDate, selTime, mathTime);
-
-                    if (handleDB.checkTitle(newAppoinment)) {
-
-                        String adedTittle = handleDB.createAppoinment(newAppoinment);
-
-
-                        Toast.makeText(getApplicationContext(), adedTittle, Toast.LENGTH_SHORT).show();
-
-                        Intent home = new Intent(CreateAppoinment.this, CalenderMain.class);
-                        startActivity(home);
-
-                    } else {
-                        Toast.makeText(getApplicationContext(), title.getText().toString() + " already exists, please choose a diﬀerent event title", Toast.LENGTH_LONG).show();
-                    }
-                }else{
 
                     hour = time.getCurrentHour();
 
@@ -122,7 +94,7 @@ public class UpdateAppoinyment extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), " something went WRONG", Toast.LENGTH_LONG).show();
                     }
 
-                }
+
             }
         });
 

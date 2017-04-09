@@ -38,7 +38,7 @@ public class CreateAppoinment extends AppCompatActivity {
 
         Intent getdate = getIntent();
         selDate = getdate.getStringExtra("date");
-        preTitle = getdate.getStringExtra("title");
+//        preTitle = getdate.getStringExtra("title");
 
         title = (EditText) findViewById(R.id.titleedit);
         time = (TimePicker) findViewById(R.id.timeedit);
@@ -50,6 +50,7 @@ public class CreateAppoinment extends AppCompatActivity {
 
 
 
+/*
         if((preTitle.equals("404"))) {
             Toast.makeText(getApplicationContext(), "create appointment", Toast.LENGTH_LONG).show();
         }else{
@@ -72,6 +73,7 @@ public class CreateAppoinment extends AppCompatActivity {
             time.setCurrentMinute(retriveMinute);
 
         }
+*/
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +81,7 @@ public class CreateAppoinment extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (preTitle.equals("404")){
+//                if (preTitle.equals("404")){
 
                     hour = time.getCurrentHour();
 
@@ -104,7 +106,7 @@ public class CreateAppoinment extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), title.getText().toString() + " already exists, please choose a diﬀerent event title", Toast.LENGTH_LONG).show();
                 }
-            }else{
+/*            }else{
 
                     hour = time.getCurrentHour();
 
@@ -122,7 +124,7 @@ public class CreateAppoinment extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), " something went WRONG", Toast.LENGTH_LONG).show();
                     }
 
-                }
+                }*/
         }
         });
 
