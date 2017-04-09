@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class CreateAppoinment extends AppCompatActivity {
+public class UpdateAppoinyment extends AppCompatActivity {
 
     static double mathTime;
     static int hour;
@@ -40,10 +40,10 @@ public class CreateAppoinment extends AppCompatActivity {
         selDate = getdate.getStringExtra("date");
         preTitle = getdate.getStringExtra("title");
 
-        title = (EditText) findViewById(R.id.titleedit);
-        time = (TimePicker) findViewById(R.id.timeedit);
-        discription = (EditText) findViewById(R.id.editdetail);
-        save = (Button) findViewById(R.id.savebtn);
+        title = (EditText) findViewById(R.id.titleUpdat);
+        time = (TimePicker) findViewById(R.id.timeUpdate);
+        discription = (EditText) findViewById(R.id.detailUpdate);
+        save = (Button) findViewById(R.id.saveUpdatebtn);
 
 
         handleDB = new AppoinmentDataBase(this, null, null, 1);
@@ -85,26 +85,26 @@ public class CreateAppoinment extends AppCompatActivity {
 
                     minute = time.getCurrentMinute();
 
-                mathTime = (hour * 60) + minute;
+                    mathTime = (hour * 60) + minute;
 
-                selTime = "" + hour + ":" + minute;
+                    selTime = "" + hour + ":" + minute;
 
-                Appoinment newAppoinment = new Appoinment(title.getText().toString(), discription.getText().toString(), selDate, selTime, mathTime);
+                    Appoinment newAppoinment = new Appoinment(title.getText().toString(), discription.getText().toString(), selDate, selTime, mathTime);
 
-                if (handleDB.checkTitle(newAppoinment)) {
+                    if (handleDB.checkTitle(newAppoinment)) {
 
-                    String adedTittle = handleDB.createAppoinment(newAppoinment);
+                        String adedTittle = handleDB.createAppoinment(newAppoinment);
 
 
-                    Toast.makeText(getApplicationContext(), adedTittle, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), adedTittle, Toast.LENGTH_SHORT).show();
 
-                    Intent home = new Intent(CreateAppoinment.this, CalenderMain.class);
-                    startActivity(home);
+                        Intent home = new Intent(CreateAppoinment.this, CalenderMain.class);
+                        startActivity(home);
 
-                } else {
-                    Toast.makeText(getApplicationContext(), title.getText().toString() + " already exists, please choose a diﬀerent event title", Toast.LENGTH_LONG).show();
-                }
-            }else{
+                    } else {
+                        Toast.makeText(getApplicationContext(), title.getText().toString() + " already exists, please choose a diﬀerent event title", Toast.LENGTH_LONG).show();
+                    }
+                }else{
 
                     hour = time.getCurrentHour();
 
@@ -123,7 +123,7 @@ public class CreateAppoinment extends AppCompatActivity {
                     }
 
                 }
-        }
+            }
         });
 
 

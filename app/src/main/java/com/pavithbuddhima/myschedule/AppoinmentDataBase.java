@@ -263,10 +263,8 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
                  retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
                 break;
             case 2:
-                 retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
-                break;
-            case 3:
-                 retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
+                 retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentDiscription"));
+
                 break;
         }
 
@@ -274,7 +272,7 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
         }
 
 
-    public int[] retriveTime(String date , String title ){
+    public int retriveTime(String date , String title ,int option ){
 
         SQLiteDatabase mydb = getWritableDatabase();
 
@@ -283,16 +281,27 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
                 COLOUMN_TITLE + "=\'" + title + "\'" + " AND " +
                 COLOUMN_DATE + "=\'" + date + "\'";
 
-        int[] timeList = new int[2];
+        int timeList = 10 ;
         double totalMinutus;
 
         Cursor pointer = mydb.rawQuery(query,null);
 
-
         totalMinutus = pointer.getInt(pointer.getColumnIndex("appoinmentMathTime"));
 
-        timeList[0] = (int)(totalMinutus/60) ;
-        timeList[1] = (int)(totalMinutus%60) ;
+        switch (option) {
+
+            case 1:
+
+                timeList = (int)(totalMinutus/60) ;
+
+                break;
+            case 2:
+
+                timeList = (int)(totalMinutus%60) ;
+
+
+                break;
+        }
 
 
         return timeList;
@@ -323,8 +332,8 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
 
 
 
-            mydb.update(TABLE_MY_APPOINMENTS, values , COLOUMN_TITLE + "=\'" + preTitle + "\'" + " AND " +
-                        COLOUMN_DATE + "=\'" + date + "\'" ,null );
+            mydb.update(TABLE_MY_APPOINMENTS, values , COLOUMN_TITLE + "='" + preTitle + "'" + " AND " +
+                        COLOUMN_DATE + "='" + date + "'" ,null );
 
             mydb.close();
             pointer.close();

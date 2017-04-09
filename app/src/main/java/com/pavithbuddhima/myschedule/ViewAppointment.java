@@ -150,6 +150,13 @@ public class ViewAppointment extends AppCompatActivity {
             switch (header) {
 
                 case "view":
+                    String pretitle = handleDB.deleteSelect(date, selection,true) ;
+                    Intent viewEditSelect = new Intent(this,CreateAppoinment.class);
+//                  handleDB.deleteSelect(date, selection,true);
+                    viewEditSelect.putExtra("title",pretitle);
+                    viewEditSelect.putExtra("date",date);
+
+                    startActivity(viewEditSelect);
 
 
 

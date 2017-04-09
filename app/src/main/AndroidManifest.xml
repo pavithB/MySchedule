@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".CreateAppoinment" />
-        <activity android:name=".ViewAppointment"></activity>
+        <activity android:name=".ViewAppointment" />
+        <activity android:name=".UpdateAppointment"></activity>
     </application>
 
 </manifest>
