@@ -24,7 +24,7 @@ public class ViewAppointment extends AppCompatActivity {
 
     String date , header , footer;
 
-   static int selection = 99;
+   static int selection = 999;
 
 
 
@@ -141,7 +141,7 @@ public class ViewAppointment extends AppCompatActivity {
 
 
         selection = Integer.parseInt(selectAppoinment.getText().toString());
-        if(selection == 99){
+        if(selection == 999){
 
                     Toast.makeText(getApplicationContext(), "PLEASE SELECT A APPOINTMENT BEFORE PRESS THE BUTTON " , Toast.LENGTH_LONG).show();
 
@@ -150,14 +150,22 @@ public class ViewAppointment extends AppCompatActivity {
             switch (header) {
 
                 case "view":
-                    String pretitle = handleDB.deleteSelect(date, selection,true) ;
-                    Intent viewEditSelect = new Intent(this,UpdateAppointment.class);
+
+                    if(selection == 999) {
+
+                        Toast.makeText(getApplicationContext(), "PLEASE SELECT A APPOINTMENT BEFORE PRESS THE BUTTON " , Toast.LENGTH_LONG).show();
+                    }else{
+
+                        String pretitle = handleDB.deleteSelect(date, selection, true);
+                        Intent viewEditSelect = new Intent(this, UpdateAppointment.class);
 //                  handleDB.deleteSelect(date, selection,true);
-                    viewEditSelect.putExtra("title",pretitle);
-                    viewEditSelect.putExtra("date",date);
+                        viewEditSelect.putExtra("title", pretitle);
+                        viewEditSelect.putExtra("date", date);
 
-                    startActivity(viewEditSelect);
+                        startActivity(viewEditSelect);
 
+
+                    }
 
 
                     break;
@@ -209,6 +217,22 @@ public class ViewAppointment extends AppCompatActivity {
 
                     break;
                 case "move":
+                    if(selection==999){
+                        Toast.makeText(getApplicationContext(), "PLEASE SELECT A APPOINTMENT BEFORE PRESS THE BUTTON " , Toast.LENGTH_LONG).show();
+                    }else {
+                        String title = handleDB.deleteSelect(date, selection, true);
+                        Intent moveAppointment = new Intent(this,MoveAppointment.class);
+                        moveAppointment.putExtra("title",title);
+                        moveAppointment.putExtra("date",date);
+                        Toast.makeText(getApplicationContext(), "date: "+date + " tittle"+ title , Toast.LENGTH_LONG).show();
+
+                        startActivity(moveAppointment);
+
+
+
+
+                    }
+
 
 
                     break;

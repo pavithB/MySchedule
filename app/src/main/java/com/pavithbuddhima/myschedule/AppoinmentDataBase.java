@@ -345,6 +345,33 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
     }
 
 
+    public boolean MoveAppointment(String preDate , String title , String newDate ) {
 
+        SQLiteDatabase mydb = getWritableDatabase();
+
+
+        String query = " SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
+                COLOUMN_TITLE + "=\'" + title + "\'" + " AND " +
+                COLOUMN_DATE + "=\'" + preDate + "\'";
+
+        Cursor pointer = mydb.rawQuery(query, null);
+
+        if (pointer == null || !pointer.moveToFirst()) {
+            return false;
+        } else {
+
+            ContentValues values = new ContentValues();
+
+            values.put(COLOUMN_DATE, newDate);
+
+
+            mydb.update(TABLE_MY_APPOINMENTS, values, COLOUMN_TITLE + "=\'" + title + "\'" + " AND " +
+                    COLOUMN_DATE + "=\'" + preDate + "\'", null);
+
+            mydb.close();
+            pointer.close();
+            return true;
+        }
+    }
 
 }
