@@ -242,4 +242,37 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
         return viewString;
 //        return  "date" ;
     }
+
+
+
+    public void retriveAppoinment(String date , String title , int option){
+
+        SQLiteDatabase mydb = getWritableDatabase();
+
+
+        String query = " SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
+                COLOUMN_TITLE + "=\'" + title + "\'" + " AND " +
+                COLOUMN_DATE + "=\'" + date + "\'";
+
+
+        Cursor pointer = mydb.rawQuery(query,null);
+
+        switch (option) {
+
+            case 1:
+            String tempTitle = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
+                break;
+            case 2:
+
+                break;
+            case 3;
+
+                break;
+        }
+
+
+        }
+
+
+
 }

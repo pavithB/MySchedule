@@ -28,6 +28,7 @@ public class CreateAppoinment extends AppCompatActivity {
 
     String selTime;
     String selDate;
+    String preTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class CreateAppoinment extends AppCompatActivity {
 
         Intent getdate = getIntent();
         selDate = getdate.getStringExtra("date");
-
+        preTitle = getdate.getStringExtra("title");
 
         title = (EditText) findViewById(R.id.titleedit);
         time = (TimePicker) findViewById(R.id.timeedit);
@@ -52,29 +53,43 @@ public class CreateAppoinment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                hour= time.getCurrentHour() ;
+
+
+
+                if (preTitle.equals("404")){
+
+                    hour = time.getCurrentHour();
                 minute = time.getCurrentMinute();
 
-                mathTime =  (hour*60) + minute ;
+                mathTime = (hour * 60) + minute;
 
-                selTime = "" + hour + ":" +minute;
+                selTime = "" + hour + ":" + minute;
 
                 Appoinment newAppoinment = new Appoinment(title.getText().toString(), discription.getText().toString(), selDate, selTime, mathTime);
 
-                if(handleDB.checkTitle(newAppoinment)) {
+                if (handleDB.checkTitle(newAppoinment)) {
 
                     String adedTittle = handleDB.createAppoinment(newAppoinment);
 
 
                     Toast.makeText(getApplicationContext(), adedTittle, Toast.LENGTH_SHORT).show();
 
-                    Intent home = new Intent(CreateAppoinment.this,CalenderMain.class);
+                    Intent home = new Intent(CreateAppoinment.this, CalenderMain.class);
                     startActivity(home);
 
-                }else{
-                    Toast.makeText(getApplicationContext(),title.getText().toString() +" already exists, please choose a diﬀerent event title", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), title.getText().toString() + " already exists, please choose a diﬀerent event title", Toast.LENGTH_LONG).show();
                 }
-            }
+            }else{
+
+
+                    title.setText(handleDB.);
+
+
+
+
+                }
+        }
         });
 
 

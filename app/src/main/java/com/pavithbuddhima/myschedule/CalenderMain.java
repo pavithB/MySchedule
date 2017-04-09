@@ -96,6 +96,7 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
                     createAppoint.putExtra("month", calMonth);
                     createAppoint.putExtra("day", calDay);
                     createAppoint.putExtra("date", date);
+                    createAppoint.putExtra("title", "404");
 
 
                     startActivity(createAppoint);
