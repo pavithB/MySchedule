@@ -245,7 +245,7 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
 
 
 
-    public void retriveAppoinment(String date , String title , int option){
+    public String retriveAppoinment(String date , String title , int option){
 
         SQLiteDatabase mydb = getWritableDatabase();
 
@@ -256,22 +256,85 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
 
 
         Cursor pointer = mydb.rawQuery(query,null);
-
+        String retriveStatement = "";
         switch (option) {
 
             case 1:
-            String tempTitle = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
+                 retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
                 break;
             case 2:
-
+                 retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
                 break;
-            case 3;
-
+            case 3:
+                 retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
                 break;
         }
 
-
+        return retriveStatement;
         }
+
+
+    public int[] retriveTime(String date , String title ){
+
+        SQLiteDatabase mydb = getWritableDatabase();
+
+
+        String query = " SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
+                COLOUMN_TITLE + "=\'" + title + "\'" + " AND " +
+                COLOUMN_DATE + "=\'" + date + "\'";
+
+        int[] timeList = new int[2];
+        double totalMinutus;
+
+        Cursor pointer = mydb.rawQuery(query,null);
+
+
+        totalMinutus = pointer.getInt(pointer.getColumnIndex("appoinmentMathTime"));
+
+        timeList[0] = (int)(totalMinutus/60) ;
+        timeList[1] = (int)(totalMinutus%60) ;
+
+
+        return timeList;
+    }
+
+
+    public boolean updateAppointment(String date , String preTitle , String title , String time , String discription, double mathTime){
+
+        SQLiteDatabase mydb = getWritableDatabase();
+
+
+        String query = " SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
+                COLOUMN_TITLE + "=\'" + preTitle + "\'" + " AND " +
+                COLOUMN_DATE + "=\'" + date + "\'";
+
+        Cursor pointer = mydb.rawQuery(query,null);
+
+        if( pointer == null || !pointer.moveToFirst()){
+            return false;
+        }else{
+
+            ContentValues values = new ContentValues();
+
+            values.put(COLOUMN_TITLE , title);
+            values.put(COLOUMN_TIME , time);
+            values.put(COLOUMN_DISCRIPTION , discription);
+            values.put(COLOUMN_MATH_TIME , mathTime);
+
+
+
+            mydb.update(TABLE_MY_APPOINMENTS, values , COLOUMN_TITLE + "=\'" + preTitle + "\'" + " AND " +
+                        COLOUMN_DATE + "=\'" + date + "\'" ,null );
+
+            mydb.close();
+            pointer.close();
+
+            return true;
+        }
+
+
+    }
+
 
 
 

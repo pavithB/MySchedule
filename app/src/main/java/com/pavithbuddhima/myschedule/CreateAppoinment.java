@@ -49,17 +49,32 @@ public class CreateAppoinment extends AppCompatActivity {
         handleDB = new AppoinmentDataBase(this, null, null, 1);
 
 
+
+        if(!(preTitle.equals("404"))){
+
+            int[] timeList = new int[2] ;
+
+            title.setText(handleDB.retriveAppoinment(date,preTitle,1));
+            discription.setText(handleDB.retriveAppoinment(date,preTitle,3));
+
+            timeList = handleDB.retriveTime(date,preTitle);
+
+            time.setCurrentHour(timeList[0]);
+            time.setCurrentMinute(timeList[1]);
+
+        }
+
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-
-
                 if (preTitle.equals("404")){
 
                     hour = time.getCurrentHour();
-                minute = time.getCurrentMinute();
+
+                    minute = time.getCurrentMinute();
 
                 mathTime = (hour * 60) + minute;
 
@@ -81,11 +96,15 @@ public class CreateAppoinment extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), title.getText().toString() + " already exists, please choose a diﬀerent event title", Toast.LENGTH_LONG).show();
                 }
             }else{
+                    int[] timeList = new int[2] ;
 
+                    title.setText(handleDB.retriveAppoinment(date,preTitle,1));
+                    discription.setText(handleDB.retriveAppoinment(date,preTitle,3));
 
-                    title.setText(handleDB.);
+                    timeList = handleDB.retriveTime(date,preTitle);
 
-
+                    time.setCurrentHour(timeList[0]);
+                    time.setCurrentMinute(timeList[1]);
 
 
                 }
