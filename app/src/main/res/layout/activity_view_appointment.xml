@@ -4,24 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#292929"
+
+    android:background="@color/grey29"
     tools:context="com.pavithbuddhima.myschedule.ViewAppointment">
 
     <TextView
-        android:layout_width="390dp"
+        android:layout_width="417dp"
         android:layout_height="60dp"
+        android:id="@+id/viewTopic"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="49dp"
-        android:id="@+id/viewHead"
-        android:textAlignment="center"
-        android:textStyle="bold"
+        android:layout_marginTop="0dp"
         android:textSize="25dp"
-        android:background="#004D40"
-        android:textColor="#F44336"/>
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:background="#00695C"/>
+
+    <TextView
+        android:layout_width="417dp"
+        android:layout_height="54dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="0dp"
+        android:id="@+id/viewHead"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:textAlignment="center"
+        android:background="#00897B"
+        android:textColor="#000000"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/viewTopic" />
 
 
     <EditText
@@ -34,42 +52,45 @@
         android:layout_marginTop="18dp"
         app:layout_constraintTop_toBottomOf="@+id/viewHead"
         android:layout_marginRight="36dp"
-        android:textColor="#FFC107"
+        android:textColor="#ffffff"
         android:textStyle="bold|italic"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.111" />
+        app:layout_constraintHorizontal_bias="0.111"
+        android:layout_marginEnd="36dp" />
 
     <EditText
-        android:textColorHint="#aaaaaa"
+        android:textColorHint="#ffffff"
         android:inputType="number"
         android:layout_width="239dp"
         android:layout_height="58dp"
         android:hint="Enter the Appointment NO:"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:id="@+id/selectAppoinment"
         android:layout_marginTop="25dp"
         app:layout_constraintTop_toBottomOf="@+id/viewAppointment"
         android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="16dp" />
 
 
     <Button
         android:textStyle="bold"
-        android:layout_width="84dp"
-        android:layout_height="46dp"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
         app:layout_constraintTop_toTopOf="@+id/selectAppoinment"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/selectAppoinment"
         android:layout_marginBottom="8dp"
         android:text="Done"
         android:id="@+id/btnSelectAppointment"
-        android:background="#F57C00"
+        android:background="#F50057"
         android:layout_marginRight="16dp"
         app:layout_constraintVertical_bias="1.0"
         app:layout_constraintRight_toRightOf="parent"
-        android:onClick="selectAction"/>
+        android:onClick="selectAction"
+        android:layout_marginEnd="16dp" />
 
     <TextView
         android:textAlignment="center"
@@ -83,7 +104,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
 
 

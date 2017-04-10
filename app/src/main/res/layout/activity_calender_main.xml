@@ -18,11 +18,11 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:id="@+id/pickdate">
+        android:id="@+id/pickdate"
+        android:layout_marginTop="27dp"
+        app:layout_constraintTop_toBottomOf="@+id/editText">
 
 
     </CalendarView>
@@ -37,7 +37,6 @@
         android:textAllCaps="false"
         android:background="#009688"
         android:id="@+id/create"
-        android:layout_marginLeft="0dp"
         android:layout_marginBottom="41dp"
         app:layout_constraintBottom_toTopOf="@+id/viewedit" />
 
@@ -56,10 +55,10 @@
         android:textStyle="bold"
         android:background="#03A9F4"
         android:id="@+id/move"
-        android:layout_marginRight="0dp"
         app:layout_constraintLeft_toRightOf="@+id/create"
         android:layout_marginLeft="8dp"
-        app:layout_constraintHorizontal_bias="1.0" />
+        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginStart="8dp" />
 
 
 
@@ -77,7 +76,6 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/delete"
         app:layout_constraintTop_toTopOf="@+id/delete"
-        android:layout_marginTop="0dp"
         app:layout_constraintVertical_bias="0.0" />
 
 
@@ -99,24 +97,31 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintLeft_toRightOf="@+id/viewedit"
         android:layout_marginLeft="8dp"
-        app:layout_constraintHorizontal_bias="1.0" />
+        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginStart="8dp" />
 
-    <SearchView
+<EditText
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/editText"
+    android:hint=" enter search word and press search"
+    app:layout_constraintBaseline_toBaselineOf="@+id/button"
+    android:layout_marginLeft="7dp"
+    app:layout_constraintLeft_toLeftOf="parent" />
 
-        android:id="@+id/searchView"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="30dp"
-        android:gravity="end"
-        android:textAlignment="gravity"
-        app:layout_constraintHorizontal_bias="0.966"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+
+    <Button
+        android:background="#7B1FA2"
+        android:textColor="#ffffff"
+        android:textStyle="italic"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:id="@+id/button"
+        android:text="search"
+        app:layout_constraintLeft_toRightOf="@+id/editText"
+        android:layout_marginLeft="-24dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginTop="33dp" />
 
 
 </android.support.constraint.ConstraintLayout>

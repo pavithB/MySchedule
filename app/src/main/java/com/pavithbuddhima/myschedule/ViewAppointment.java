@@ -5,6 +5,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Button;
@@ -16,7 +18,7 @@ public class ViewAppointment extends AppCompatActivity {
 
     AppoinmentDataBase handleDB;
 
-    TextView  viewHead , inform ;
+    TextView  viewHead , inform ,viewTopic;
 
     EditText viewAll , selectAppoinment;
 
@@ -31,7 +33,11 @@ public class ViewAppointment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_view_appointment);
+
 
         Intent getdata = getIntent();
         date = getdata.getStringExtra("date");
@@ -45,6 +51,7 @@ public class ViewAppointment extends AppCompatActivity {
         inform = (TextView) findViewById(R.id.informText) ;
         btnSelect = (Button) findViewById(R.id.btnSelectAppointment);
         selectAppoinment = (EditText) findViewById(R.id.selectAppoinment);
+        viewTopic = (TextView)findViewById(R.id.viewTopic);
 
 
 
@@ -53,19 +60,24 @@ public class ViewAppointment extends AppCompatActivity {
 
         showappointment();
 
-        viewHead.setText("Appointments on \n" + date);
+        viewHead.setText("\nAppointments on " + date);
 
         switch (header){
 
             case "view":
 
+                viewTopic.setText("\n      View/Edit Appointment");
                 viewEdit();
                 break;
             case "delete":
 
+                viewTopic.setText("\n      Delete Appointment");
+
                 deleteSelect();
                 break;
             case "move":
+
+                viewTopic.setText("\n      Move Appointment");
 
                 moveSelect();
                 break;
@@ -157,7 +169,7 @@ public class ViewAppointment extends AppCompatActivity {
                     }else{
 
                         String pretitle = handleDB.deleteSelect(date, selection, true);
-                        Intent viewEditSelect = new Intent(this, UpdateAppointment.class);
+                        Intent viewEditSelect = new Intent(this, CreateAppoinment.class);
 //                  handleDB.deleteSelect(date, selection,true);
                         viewEditSelect.putExtra("title", pretitle);
                         viewEditSelect.putExtra("date", date);

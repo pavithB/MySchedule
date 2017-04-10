@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -22,7 +24,7 @@ public class CreateAppoinment extends AppCompatActivity {
     TimePicker time;
     EditText discription;
 
-    Button save;
+    Button save , thesaurusbtn;
 
     AppoinmentDataBase handleDB;
 
@@ -33,18 +35,24 @@ public class CreateAppoinment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_create_appoinment);
+
+
 
 
         Intent getdate = getIntent();
         selDate = getdate.getStringExtra("date");
-//        preTitle = getdate.getStringExtra("title");
+        preTitle = getdate.getStringExtra("title");
 
         title = (EditText) findViewById(R.id.titleedit);
         time = (TimePicker) findViewById(R.id.timeedit);
         discription = (EditText) findViewById(R.id.editdetail);
         save = (Button) findViewById(R.id.savebtn);
-
+        thesaurusbtn =(Button) findViewById(R.id.thesaurusbtn) ;
 
         handleDB = new AppoinmentDataBase(this, null, null, 1);
 
@@ -81,7 +89,7 @@ public class CreateAppoinment extends AppCompatActivity {
             public void onClick(View v) {
 
 
-//                if (preTitle.equals("404")){
+                if (preTitle.equals("404")){
 
                     hour = time.getCurrentHour();
 
@@ -106,9 +114,9 @@ public class CreateAppoinment extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), title.getText().toString() + " already exists, please choose a diﬀerent event title", Toast.LENGTH_LONG).show();
                 }
-/*            }else{
+            }else{
 
-                    hour = time.getCurrentHour();
+                   /* hour = time.getCurrentHour();
 
                     minute = time.getCurrentMinute();
 
@@ -123,11 +131,43 @@ public class CreateAppoinment extends AppCompatActivity {
                     }else{
                         Toast.makeText(getApplicationContext(), " something went WRONG", Toast.LENGTH_LONG).show();
                     }
+*/
 
-                }*/
+
+                    hour = time.getCurrentHour();
+
+                    minute = time.getCurrentMinute();
+
+                    mathTime = (hour * 60) + minute;
+
+                    selTime = "" + hour + ":" + minute;
+
+                    boolean updateResult = handleDB.updateAppointment(selDate ,preTitle ,title.getText().toString() , selTime ,discription.getText().toString(),mathTime);
+//                Toast.makeText(getApplicationContext(), preTitle, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), selDate, Toast.LENGTH_LONG).show();
+                    if(updateResult){
+                        Toast.makeText(getApplicationContext(), "Update " + preTitle +" appoitment SUCCESSFULL", Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), " something went WRONG", Toast.LENGTH_LONG).show();
+                    }
+
+
+                }
         }
         });
 
+
+
+
+        thesaurusbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent  thesaurus = new Intent(CreateAppoinment.this,ThesaurusActivity.class);
+                startActivity(thesaurus);
+
+            }
+        });
 
     }
 
