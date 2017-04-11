@@ -17,6 +17,8 @@
         android:textAlignment="center"
         android:textColor="#111111"
         android:textSize="40dp"
+
+        android:shadowColor="@color/Black"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
