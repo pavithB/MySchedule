@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Pavith Buddhima on 4/7/2017.
  */
@@ -373,5 +376,51 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
             return true;
         }
     }
+
+
+
+
+
+    public List<Appoinment> retriveAllAppoinment(){
+
+        List<Appoinment> list = new ArrayList<>();
+
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS +";";
+
+        //Cursor exposes results from a query on a SQLiteDatabase
+        Cursor cursor = db.rawQuery(query, null);
+        //move the cursor to the first row of the results
+        cursor.moveToFirst();
+
+        //See if there are anymore results
+        while (!cursor.isAfterLast()) {
+
+            if (cursor.getString(cursor.getColumnIndex("title")) != null) {
+
+//                retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentDiscription"));
+
+//                public static final String COLOUMN_DATE="appoinmentDate";
+//
+//                public static final String COLOUMN_TIME ="appoinmentTime";
+//
+//                public static final String COLOUMN_TITLE="appoinmentTitle";
+
+//    public Appoinment(String title, String discription, String date, String time, double mathTime)
+
+                Appoinment appointment = new Appoinment(cursor.getString(cursor.getColumnIndex("appoinmentTitle")),
+                        cursor.getString(cursor.getColumnIndex("appoinmentDiscription")),
+                        cursor.getString(cursor.getColumnIndex("appoinmentDate")),
+                        cursor.getString(cursor.getColumnIndex("appoinmentTime")),
+                        cursor.getDouble(cursor.getColumnIndex("appoinmentMathTime")) );
+
+                list.add(appointment);
+            }
+            cursor.moveToNext();
+        }
+        db.close();
+        return list;
+    }
+
 
 }

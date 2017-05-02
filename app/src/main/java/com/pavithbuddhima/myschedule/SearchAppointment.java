@@ -37,9 +37,9 @@ public class SearchAppointment extends AppCompatActivity implements View.OnClick
     ListView listView;
 
     //lists to store all the resulting appointments
-    List<Appointment> listArr;
+    List<Appoinment> listArr;
     //list to store matching appointments
-    List<Appointment> listMatches;
+    List<Appoinment> listMatches;
 
     //variable to store the value input from the textbox
     String searchKeywords;
@@ -51,7 +51,7 @@ public class SearchAppointment extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_appointment_screen);
+        setContentView(R.layout.activity_search_appointment);
 
         //initialising the button and edit text
         searchBtn = (Button) findViewById(R.id.confirmButton);
@@ -59,7 +59,7 @@ public class SearchAppointment extends AppCompatActivity implements View.OnClick
         searchET = (EditText) findViewById(R.id.searchEditText);
 
         //creates an instance of the MyDBHandler
-        myDBHandler = new MyDBHandler(this, null, null, 1);
+        myDBHandler = new AppoinmentDataBase(this, null, null, 1);
 
         //call the displayappointment method and store all the appointments in a list
         listArr = myDBHandler.displayAppointments();
