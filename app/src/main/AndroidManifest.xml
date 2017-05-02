@@ -23,7 +23,7 @@
         <activity android:name=".ViewAppointment" />
         <activity android:name=".UpdateAppointment" />
         <activity android:name=".MoveAppointment" />
-        <activity android:name=".SearchAppointment"></activity>
+        <activity android:name=".SearchAppointment" />
     </application>
 
 </manifest>
