@@ -27,13 +27,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-/**
- *
- * This is the main activity of the application. It consists of a simple text box and a button
- * that the user can use to input a word to obtain a list of synonyms related to that word.
- *
 
- */
 
 public class ThesaurusActivity extends AppCompatActivity implements View.OnClickListener {
 

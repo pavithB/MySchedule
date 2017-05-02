@@ -11,10 +11,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.content.Context;
 
-/**
- *
- */
-
 
 public class ThesaurusXMLPullParser {
 

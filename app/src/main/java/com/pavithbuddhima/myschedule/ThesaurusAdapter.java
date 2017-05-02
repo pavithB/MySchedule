@@ -9,13 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-/**
- *
- * Custom Adapter class that is responsible for holding the list of sites after they
- * get parsed out of XML and building row views to display them on the screen.
- *
 
- */
 
 public class ThesaurusAdapter extends ArrayAdapter<Synonym> {
 
