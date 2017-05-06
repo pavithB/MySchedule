@@ -37,11 +37,9 @@ public class UpdateAppointment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_update_appointment);
-
-
 
 
         Intent getdate = getIntent();
@@ -55,8 +53,6 @@ public class UpdateAppointment extends AppCompatActivity {
 
 
         handleDB = new AppoinmentDataBase(this, null, null, 1);
-
-
 
 
         Toast.makeText(getApplicationContext(), "update appointment", Toast.LENGTH_LONG).show();
@@ -81,13 +77,9 @@ public class UpdateAppointment extends AppCompatActivity {
 */
 
 
-
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
 
 
                 hour = time.getCurrentHour();
@@ -98,12 +90,12 @@ public class UpdateAppointment extends AppCompatActivity {
 
                 selTime = "" + hour + ":" + minute;
 
-                boolean updateResult = handleDB.updateAppointment(date ,preTitle ,title.getText().toString() , selTime ,discription.getText().toString(),mathTime);
+                boolean updateResult = handleDB.updateAppointment(date, preTitle, title.getText().toString(), selTime, discription.getText().toString(), mathTime);
 //                Toast.makeText(getApplicationContext(), preTitle, Toast.LENGTH_LONG).show();
                 Toast.makeText(getApplicationContext(), date, Toast.LENGTH_LONG).show();
-                if(updateResult){
-                    Toast.makeText(getApplicationContext(), "Update " + preTitle +" appoitment SUCCESSFULL", Toast.LENGTH_LONG).show();
-                }else{
+                if (updateResult) {
+                    Toast.makeText(getApplicationContext(), "Update " + preTitle + " appoitment SUCCESSFULL", Toast.LENGTH_LONG).show();
+                } else {
                     Toast.makeText(getApplicationContext(), " something went WRONG", Toast.LENGTH_LONG).show();
                 }
 
@@ -115,22 +107,21 @@ public class UpdateAppointment extends AppCompatActivity {
     }
 
 
-    public void retriveData(){
-
+    public void retriveData() {
 
 
         //    int retriveHour ;
 //            int retriveMinute ;
 
-        String retriveTitle = handleDB.retriveAppoinment(date,preTitle,1) ;
-        String retriveDis = handleDB.retriveAppoinment(date,preTitle,2);
+        String retriveTitle = handleDB.retriveAppoinment(date, preTitle, 1);
+        String retriveDis = handleDB.retriveAppoinment(date, preTitle, 2);
 
 
         title.setText(retriveTitle);
         discription.setText(retriveDis);
 
-        int retriveHour = handleDB.retriveTime(date,preTitle,1);
-        int retriveMinute = handleDB.retriveTime(date,preTitle,2);
+        int retriveHour = handleDB.retriveTime(date, preTitle, 1);
+        int retriveMinute = handleDB.retriveTime(date, preTitle, 2);
 
         time.setCurrentHour(retriveHour);
         time.setCurrentMinute(retriveMinute);
