@@ -17,18 +17,17 @@ import android.widget.EditText;
 public class CalenderMain extends AppCompatActivity implements View.OnClickListener {
 
 
-    static  int calDay;
-    static  int calMonth;
-    static  int calYear;
+    static int calDay;
+    static int calMonth;
+    static int calYear;
 
-    static  String date = "un";
+    static String date = "un";
 
 
-
-    Button createNew , search ;
-    Button viewEdit ;
-    Button move ;
-    Button delete ;
+    Button createNew, search;
+    Button viewEdit;
+    Button move;
+    Button delete;
     Button delAll;
     Button delSel;
     CalendarView datePicker;
@@ -37,16 +36,14 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
     AppoinmentDataBase handleDB;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_calender_main);
-
 
 
         createNew = (Button) findViewById(R.id.create);
@@ -70,25 +67,24 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
         handleDB = new AppoinmentDataBase(this, null, null, 1);
 
 
-
         datePicker.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override public void onSelectedDayChange(
+            @Override
+            public void onSelectedDayChange(
                     CalendarView view,
-                    int          year,
-                    int          month,
-                    int          dayOfMonth ) {
-                calDay =dayOfMonth;
-                calMonth = month ;
+                    int year,
+                    int month,
+                    int dayOfMonth) {
+                calDay = dayOfMonth;
+                calMonth = month;
                 calYear = year;
 
 
-
-                Toast.makeText(getApplicationContext(), ""+year+ " / " + (month+1) + " / " + dayOfMonth+" selected", Toast.LENGTH_SHORT).show();
-                date = ""+year+ " / " + (month+1) + " / " + dayOfMonth ;
+                Toast.makeText(getApplicationContext(), "" + year + " / " + (month + 1) + " / " + dayOfMonth + " selected", Toast.LENGTH_SHORT).show();
+                date = "" + year + " / " + (month + 1) + " / " + dayOfMonth;
             }
 
 
-    });
+        });
 
     }
 
@@ -117,7 +113,7 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
                 case R.id.move:
                     Intent move = new Intent(this, ViewAppointment.class);
                     move.putExtra("date", date);
-                    move.putExtra("option","move");
+                    move.putExtra("option", "move");
                     startActivity(move);
 
                     break;
@@ -125,7 +121,7 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
                 case R.id.viewedit:
                     Intent viewEdit = new Intent(this, ViewAppointment.class);
                     viewEdit.putExtra("date", date);
-                    viewEdit.putExtra("option","view");
+                    viewEdit.putExtra("option", "view");
                     startActivity(viewEdit);
 
 
@@ -160,7 +156,7 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
 
                             Intent deleteOne = new Intent(CalenderMain.this, ViewAppointment.class);
                             deleteOne.putExtra("date", date);
-                            deleteOne.putExtra("option","delete");
+                            deleteOne.putExtra("option", "delete");
                             startActivity(deleteOne);
 
 
@@ -182,8 +178,8 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
 
                 case R.id.searchBtn:
 
-                    Intent searchView = new Intent(CalenderMain.this,SearchAppointment.class);
-                    searchView.putExtra("keyword",searchWord.getText().toString());
+                    Intent searchView = new Intent(CalenderMain.this, SearchAppointment.class);
+                    searchView.putExtra("keyword", searchWord.getText().toString());
                     startActivity(searchView);
 
                     break;
@@ -194,7 +190,6 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
 
 
     }
-
 
 
 }
