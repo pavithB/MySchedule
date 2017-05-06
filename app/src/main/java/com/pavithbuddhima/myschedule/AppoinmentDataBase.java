@@ -17,31 +17,23 @@ import java.util.List;
 public class AppoinmentDataBase extends SQLiteOpenHelper {
 
 
+    private static final int DATABASE_VERSION = 1;
 
-    private static final int DATABASE_VERSION=1;
+    private static final String DATABSE_NAME = "appoinments.db";
 
-    private static final String DATABSE_NAME="appoinments.db";
+    public static final String TABLE_MY_APPOINMENTS = "myappoinments";
 
-    public static final String TABLE_MY_APPOINMENTS="myappoinments";
+    public static final String COLOUMN_ID = "_id";
 
-    public static final String COLOUMN_ID="_id";
+    public static final String COLOUMN_DATE = "appoinmentDate";
 
-    public static final String COLOUMN_DATE="appoinmentDate";
+    public static final String COLOUMN_TIME = "appoinmentTime";
 
-    public static final String COLOUMN_TIME ="appoinmentTime";
+    public static final String COLOUMN_TITLE = "appoinmentTitle";
 
-    public static final String COLOUMN_TITLE="appoinmentTitle";
+    public static final String COLOUMN_DISCRIPTION = "appoinmentDiscription";
 
-    public static final String COLOUMN_DISCRIPTION ="appoinmentDiscription";
-
-    public static final String COLOUMN_MATH_TIME ="appoinmentMathTime";
-
-
-
-
-
-
-
+    public static final String COLOUMN_MATH_TIME = "appoinmentMathTime";
 
 
     public AppoinmentDataBase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -51,10 +43,8 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
     }
 
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
-
 
 
         String query = "CREATE TABLE " + TABLE_MY_APPOINMENTS + "(" +
@@ -82,7 +72,7 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
     }
 
 
-    public Boolean checkTitle(Appoinment appoinment){
+    public Boolean checkTitle(Appoinment appoinment) {
 
         SQLiteDatabase mydb = getWritableDatabase();
 
@@ -94,16 +84,15 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
 //                COLOUMN_TITLE + " = \"" + appoinment.getTitle() + " \"";
 
 
-
-        Cursor pointer = mydb.rawQuery(query,null);
+        Cursor pointer = mydb.rawQuery(query, null);
 
 //        mydb.close();
 
-        if ( pointer == null || !pointer.moveToFirst()){
+        if (pointer == null || !pointer.moveToFirst()) {
 
             return true;
 
-        }else{
+        } else {
 
             return false;
         }
@@ -111,22 +100,19 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
     }
 
 
-
-
-
-    public String createAppoinment(Appoinment appoinment){
+    public String createAppoinment(Appoinment appoinment) {
 
         ContentValues values = new ContentValues();
 
-        values.put(COLOUMN_DATE,appoinment.getDate());
-        values.put(COLOUMN_TIME,appoinment.getTime());
-        values.put(COLOUMN_TITLE,appoinment.getTitle());
-        values.put(COLOUMN_DISCRIPTION,appoinment.getDiscription());
-        values.put(COLOUMN_MATH_TIME,appoinment.getMathTime());
+        values.put(COLOUMN_DATE, appoinment.getDate());
+        values.put(COLOUMN_TIME, appoinment.getTime());
+        values.put(COLOUMN_TITLE, appoinment.getTitle());
+        values.put(COLOUMN_DISCRIPTION, appoinment.getDiscription());
+        values.put(COLOUMN_MATH_TIME, appoinment.getMathTime());
 
 
         SQLiteDatabase mydb = getWritableDatabase();
-        mydb.insert(TABLE_MY_APPOINMENTS,null,values);
+        mydb.insert(TABLE_MY_APPOINMENTS, null, values);
         mydb.close();
 
 //     return "time: "+appoinment.getTime()+" title:" +appoinment.getTitle()+" dis:" +appoinment.getDiscription()+" date:" + appoinment.getDate() ;
@@ -135,12 +121,11 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
     }
 
 
-
-    public void deleteAll(String date){
+    public void deleteAll(String date) {
 
         SQLiteDatabase mydb = getWritableDatabase();
 
-        mydb.execSQL("DELETE FROM " + TABLE_MY_APPOINMENTS + " WHERE " + COLOUMN_DATE + "=\"" + date +"\";"   );
+        mydb.execSQL("DELETE FROM " + TABLE_MY_APPOINMENTS + " WHERE " + COLOUMN_DATE + "=\"" + date + "\";");
         mydb.close();
 
 
@@ -148,92 +133,90 @@ public class AppoinmentDataBase extends SQLiteOpenHelper {
 //    delete single appoinment goes here
 
 
-public String deleteSelect(String date , int userSelected , boolean titleOnly){
+    public String deleteSelect(String date, int userSelected, boolean titleOnly) {
 
-    SQLiteDatabase mydb = getWritableDatabase();
+        SQLiteDatabase mydb = getWritableDatabase();
 
 //    mydb.execSQL("DELETE FROM " + TABLE_MY_APPOINMENTS + " WHERE "  +
 //            COLOUMN_TITLE + "=\'" + title + "\'" + " AND " +
 //            COLOUMN_DATE + "=\'" + date + "\';"  );
 
 
-    int index=1;
-    String title = "200" ;
+        int index = 1;
+        String title = "200";
 
 
+        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
+                COLOUMN_DATE + " = \"" + date + "\" ORDER BY " + COLOUMN_MATH_TIME + " ASC";
 
-    String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
-            COLOUMN_DATE + " = \"" + date +  "\" ORDER BY " + COLOUMN_MATH_TIME +" ASC" ;
 
+        Cursor pointer = mydb.rawQuery(query, null);
+        pointer.moveToFirst();
 
-    Cursor pointer = mydb.rawQuery(query,null);
-    pointer.moveToFirst();
-
-    while(!pointer.isAfterLast()){
+        while (!pointer.isAfterLast()) {
 
 //            if(pointer.getString(pointer.getColumnIndex("appoinmentDate"))!=null){
 
-        String tempTitle = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
+            String tempTitle = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
 
-        if(index == userSelected){
+            if (index == userSelected) {
 
-            if(titleOnly){
-                title = tempTitle ;
-            }else {
+                if (titleOnly) {
+                    title = tempTitle;
+                } else {
 
-                mydb.execSQL("DELETE FROM " + TABLE_MY_APPOINMENTS + " WHERE " + COLOUMN_TITLE + "=\"" + tempTitle + "\";");
+                    mydb.execSQL("DELETE FROM " + TABLE_MY_APPOINMENTS + " WHERE " + COLOUMN_TITLE + "=\"" + tempTitle + "\";");
+
+                }
+                break;
+            } else {
+                index++;
 
             }
-            break;
-            }else{
-            index++;
+
+
+            pointer.moveToNext();
 
         }
 
+        mydb.close();
+        if (pointer.isAfterLast()) {
+            return "404";
+        } else {
+            return title;
+        }
 
-        pointer.moveToNext();
 
     }
 
-    mydb.close();
-    if(pointer.isAfterLast()){
-        return "404" ;
-    }else{
-        return title;
-    }
+
+    public String viewAppoinment(String date) {
 
 
-}
-
-
-
-    public String viewAppoinment(String date){
-
-
-        String viewString="";
-        int index=0;
+        String viewString = "";
+        int index = 0;
 
         SQLiteDatabase mydb = getWritableDatabase();
 
         String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + " WHERE " +
-                COLOUMN_DATE + " = \"" + date +  "\" ORDER BY " + COLOUMN_MATH_TIME +" ASC" ;
+                COLOUMN_DATE + " = \"" + date + "\" ORDER BY " + COLOUMN_MATH_TIME + " ASC";
 
 //        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS ;
 
-        Cursor pointer = mydb.rawQuery(query,null);
+        Cursor pointer = mydb.rawQuery(query, null);
         pointer.moveToFirst();
 
-        while(!pointer.isAfterLast()){
+        while (!pointer.isAfterLast()) {
 
 //            if(pointer.getString(pointer.getColumnIndex("appoinmentDate"))!=null){
 
-                index++;
+            index++;
 
-                String tempTime = pointer.getString(pointer.getColumnIndex("appoinmentTime"));
-                String tempTitle = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
+            String tempTime = pointer.getString(pointer.getColumnIndex("appoinmentTime"));
+            String tempTitle = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
 
-                viewString += index + ".  " + tempTime + "  " + tempTitle;
-                viewString +="\n";
+            viewString += index + ".  " + tempTime + "  " + tempTitle;
+            viewString += "\n";
 //            }
 
             pointer.moveToNext();
@@ -247,8 +230,7 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
     }
 
 
-
-    public String retriveAppoinment(String date , String title , int option){
+    public String retriveAppoinment(String date, String title, int option) {
 
         SQLiteDatabase mydb = getWritableDatabase();
 
@@ -258,24 +240,24 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
                 COLOUMN_DATE + "=\'" + date + "\'";
 
 
-        Cursor pointer = mydb.rawQuery(query,null);
+        Cursor pointer = mydb.rawQuery(query, null);
         String retriveStatement = "";
         switch (option) {
 
             case 1:
-                 retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
+                retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentTitle"));
                 break;
             case 2:
-                 retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentDiscription"));
+                retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentDiscription"));
 
                 break;
         }
 
         return retriveStatement;
-        }
+    }
 
 
-    public int retriveTime(String date , String title ,int option ){
+    public int retriveTime(String date, String title, int option) {
 
         SQLiteDatabase mydb = getWritableDatabase();
 
@@ -284,10 +266,10 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
                 COLOUMN_TITLE + "=\'" + title + "\'" + " AND " +
                 COLOUMN_DATE + "=\'" + date + "\'";
 
-        int timeList = 10 ;
+        int timeList = 10;
         double totalMinutus;
 
-        Cursor pointer = mydb.rawQuery(query,null);
+        Cursor pointer = mydb.rawQuery(query, null);
 
         totalMinutus = pointer.getInt(pointer.getColumnIndex("appoinmentMathTime"));
 
@@ -295,12 +277,12 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
 
             case 1:
 
-                timeList = (int)(totalMinutus/60) ;
+                timeList = (int) (totalMinutus / 60);
 
                 break;
             case 2:
 
-                timeList = (int)(totalMinutus%60) ;
+                timeList = (int) (totalMinutus % 60);
 
 
                 break;
@@ -311,7 +293,7 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
     }
 
 
-    public boolean updateAppointment(String date , String preTitle , String title , String time , String discription, double mathTime){
+    public boolean updateAppointment(String date, String preTitle, String title, String time, String discription, double mathTime) {
 
         SQLiteDatabase mydb = getWritableDatabase();
 
@@ -320,23 +302,22 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
                 COLOUMN_TITLE + "=\'" + preTitle + "\'" + " AND " +
                 COLOUMN_DATE + "=\'" + date + "\'";
 
-        Cursor pointer = mydb.rawQuery(query,null);
+        Cursor pointer = mydb.rawQuery(query, null);
 
-        if( pointer == null || !pointer.moveToFirst()){
+        if (pointer == null || !pointer.moveToFirst()) {
             return false;
-        }else{
+        } else {
 
             ContentValues values = new ContentValues();
 
-            values.put(COLOUMN_TITLE , title);
-            values.put(COLOUMN_TIME , time);
-            values.put(COLOUMN_DISCRIPTION , discription);
-            values.put(COLOUMN_MATH_TIME , mathTime);
+            values.put(COLOUMN_TITLE, title);
+            values.put(COLOUMN_TIME, time);
+            values.put(COLOUMN_DISCRIPTION, discription);
+            values.put(COLOUMN_MATH_TIME, mathTime);
 
 
-
-            mydb.update(TABLE_MY_APPOINMENTS, values , COLOUMN_TITLE + "=\'" + preTitle + "\'" + " AND " +
-                        COLOUMN_DATE + "=\'" + date + "\'" ,null );
+            mydb.update(TABLE_MY_APPOINMENTS, values, COLOUMN_TITLE + "=\'" + preTitle + "\'" + " AND " +
+                    COLOUMN_DATE + "=\'" + date + "\'", null);
 
             mydb.close();
             pointer.close();
@@ -348,7 +329,7 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
     }
 
 
-    public boolean MoveAppointment(String preDate , String title , String newDate ) {
+    public boolean MoveAppointment(String preDate, String title, String newDate) {
 
         SQLiteDatabase mydb = getWritableDatabase();
 
@@ -378,15 +359,12 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
     }
 
 
-
-
-
-    public ArrayList<Appoinment> retriveAllAppointment(){
+    public ArrayList<Appoinment> retriveAllAppointment() {
 
         ArrayList<Appoinment> list = new ArrayList<>();
 
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS +";";
+        String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS + ";";
 
         //Cursor exposes results from a query on a SQLiteDatabase
         Cursor cursor = db.rawQuery(query, null);
@@ -412,7 +390,7 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
                         cursor.getString(cursor.getColumnIndex("appoinmentDiscription")),
                         cursor.getString(cursor.getColumnIndex("appoinmentDate")),
                         cursor.getString(cursor.getColumnIndex("appoinmentTime")),
-                        cursor.getDouble(cursor.getColumnIndex("appoinmentMathTime")) );
+                        cursor.getDouble(cursor.getColumnIndex("appoinmentMathTime")));
 
                 list.add(appointment);
             }
