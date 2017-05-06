@@ -6,19 +6,20 @@
     android:id="@+id/popUpList">
 
     <TextView
-        android:id="@+id/categoryTextView"
+        android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#ffffff"/>
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/synonymsTextView"
+        android:id="@+id/detailsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        android:layout_below="@id/categoryTextView"
-        android:textColor="#ffffff"/>
+        android:layout_below="@id/titleTextView"
+        android:ellipsize="end"
+        android:maxLines="2"
+        />
 
 </RelativeLayout>

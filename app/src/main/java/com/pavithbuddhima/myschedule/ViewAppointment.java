@@ -189,9 +189,15 @@ public class ViewAppointment extends AppCompatActivity {
                      Button confirmYes =(Button) mView.findViewById(R.id.confirmYes);
                     TextView confirmMsg = (TextView) mView.findViewById(R.id.confirmDeleteText);
 
+
+
                     String confirmDel = handleDB.deleteSelect(date,selection,true);
 //                    Toast.makeText(getApplicationContext(),"123", Toast.LENGTH_LONG).show();
                     confirmMsg.setText("Would you like to delete event \" "+ confirmDel + " \"" );
+
+                    mbuild.setView(mView);
+                    AlertDialog dialog = mbuild.create();
+
 // set action listners for dialog box buttons
                     confirmYes.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -203,6 +209,7 @@ public class ViewAppointment extends AppCompatActivity {
                             Intent cont = new Intent(ViewAppointment.this,ViewAppointment.class);
                             cont.putExtra("date",date);
                             cont.putExtra("option",header);
+
 
                         }
                     });
@@ -219,12 +226,16 @@ public class ViewAppointment extends AppCompatActivity {
 
 
 
+
+
+
                         }
                     });
 //show the dialog box
-                    mbuild.setView(mView);
-                    AlertDialog dialog = mbuild.create();
+
                     dialog.show();
+
+//                    dialog.hide();
 
 
                     break;

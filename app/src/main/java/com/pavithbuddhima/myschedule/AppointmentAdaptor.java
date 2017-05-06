@@ -44,7 +44,7 @@ public class AppointmentAdaptor extends ArrayAdapter<Appoinment> {
 
         //Set the resulting synonym category and synonyms in the TextViews
         titleTV.setText(getItem(pos).getTitle());
-        detailsTV.setText(getItem(pos).getDetails());
+        detailsTV.setText(getItem(pos).getDiscription());
 
         return row;
 

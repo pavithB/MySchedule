@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
+import android.widget.EditText;
 
 public class CalenderMain extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,14 +25,14 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
 
 
 
-    Button createNew ;
+    Button createNew , search ;
     Button viewEdit ;
     Button move ;
     Button delete ;
     Button delAll;
     Button delSel;
     CalendarView datePicker;
-
+    EditText searchWord;
 
     AppoinmentDataBase handleDB;
 
@@ -55,12 +56,15 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
         datePicker = (CalendarView) findViewById(R.id.pickdate);
         delAll = (Button) findViewById(R.id.delAll);
         delSel = (Button) findViewById(R.id.delSel);
+        search = (Button) findViewById(R.id.searchBtn);
+        searchWord = (EditText) findViewById(R.id.searchET);
 
 
         createNew.setOnClickListener(this);
         viewEdit.setOnClickListener(this);
         move.setOnClickListener(this);
         delete.setOnClickListener(this);
+        search.setOnClickListener(this);
 
 
         handleDB = new AppoinmentDataBase(this, null, null, 1);
@@ -139,6 +143,9 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
                         @Override
                         public void onClick(View view) {
 
+                            Toast.makeText(getApplicationContext(), "Appointments deleted", Toast.LENGTH_SHORT).show();
+
+
                             handleDB.deleteAll(date);
 
                         }
@@ -148,6 +155,8 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
                     delSel.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
+                            Toast.makeText(getApplicationContext(), "Select appointment to delete", Toast.LENGTH_SHORT).show();
 
                             Intent deleteOne = new Intent(CalenderMain.this, ViewAppointment.class);
                             deleteOne.putExtra("date", date);
@@ -169,6 +178,15 @@ public class CalenderMain extends AppCompatActivity implements View.OnClickListe
 //                case R.id.searchView:
 //
 //                    break;
+
+
+                case R.id.searchBtn:
+
+                    Intent searchView = new Intent(CalenderMain.this,SearchAppointment.class);
+                    searchView.putExtra("keyword",searchWord.getText().toString());
+                    startActivity(searchView);
+
+                    break;
 
             }
 

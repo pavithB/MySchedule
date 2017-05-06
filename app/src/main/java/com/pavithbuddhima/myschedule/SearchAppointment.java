@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 
         import android.content.Context;
         import android.content.Intent;
-        import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.view.Gravity;
         import android.view.LayoutInflater;
@@ -37,12 +36,15 @@ public class SearchAppointment extends AppCompatActivity implements View.OnClick
     ListView listView;
 
     //lists to store all the resulting appointments
-    List<Appoinment> listArr;
+    ArrayList<Appoinment> listArr = new ArrayList<Appoinment>();
     //list to store matching appointments
     List<Appoinment> listMatches;
 
     //variable to store the value input from the textbox
     String searchKeywords;
+
+    String preKeyword;
+
 
     //search popup stuff
     private PopupWindow popupWindow;
@@ -53,6 +55,9 @@ public class SearchAppointment extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_appointment);
 
+        Intent getWord = getIntent();
+        preKeyword = getWord.getStringExtra("keyword");
+
         //initialising the button and edit text
         searchBtn = (Button) findViewById(R.id.confirmButton);
         searchBtn.setOnClickListener(this);
@@ -62,8 +67,11 @@ public class SearchAppointment extends AppCompatActivity implements View.OnClick
         myDBHandler = new AppoinmentDataBase(this, null, null, 1);
 
         //call the displayappointment method and store all the appointments in a list
-        listArr = myDBHandler.displayAppointments();
+        listArr = myDBHandler.retriveAllAppointment();
 
+        if(preKeyword != "") {
+            searchET.setText(preKeyword);
+        }
         //initialize the list view
         listView = (ListView) findViewById(R.id.searchList);
         //adding a list item click listener
@@ -104,7 +112,7 @@ public class SearchAppointment extends AppCompatActivity implements View.OnClick
 
 
                         //see if the arraylist objectcts contain any of the keywords
-                        for (Appointment appointment : listArr) {
+                        for (Appoinment appointment : listArr) {
 
                             if (appointment.getTitle().contains(searchKeywords)) {
 
@@ -139,13 +147,13 @@ public class SearchAppointment extends AppCompatActivity implements View.OnClick
      *
      * @param v The current view instance is passed
      */
-    public void displayClickedSearch(Appointment appointment , View v){
+    public void displayClickedSearch(Appoinment appointment , View v){
 
         Toast.makeText(getBaseContext(),appointment.getTitle(), Toast.LENGTH_SHORT).show();
 
 
         //get an instance of layoutinflater
-        LayoutInflater inflater = (LayoutInflater) SearchAppointmentScreen.this
+        LayoutInflater inflater = (LayoutInflater) SearchAppointment.this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //initiate the view
         final View layout = inflater.inflate(R.layout.search_popup,
@@ -157,14 +165,14 @@ public class SearchAppointment extends AppCompatActivity implements View.OnClick
         detailsTV = (TextView) layout.findViewById(R.id.searchedDetails) ;
 
         //initialize a size for the popup
-        popupWindow = new PopupWindow(layout, 1200, 900 ,  true);
+        popupWindow = new PopupWindow(layout, 1070, 900 ,  true);
         // display the popup in the center
         popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
 
         //setting the textviews
         titleTV.setText(appointment.getTitle());
         timeTV.setText(appointment.getTime());
-        detailsTV.setText(appointment.getDetails());
+        detailsTV.setText(appointment.getDiscription());
 
 
 

@@ -381,9 +381,9 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
 
 
 
-    public List<Appoinment> retriveAllAppoinment(){
+    public ArrayList<Appoinment> retriveAllAppointment(){
 
-        List<Appoinment> list = new ArrayList<>();
+        ArrayList<Appoinment> list = new ArrayList<>();
 
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_MY_APPOINMENTS +";";
@@ -396,7 +396,7 @@ public String deleteSelect(String date , int userSelected , boolean titleOnly){
         //See if there are anymore results
         while (!cursor.isAfterLast()) {
 
-            if (cursor.getString(cursor.getColumnIndex("title")) != null) {
+            if (cursor.getString(cursor.getColumnIndex("appoinmentTitle")) != null) {
 
 //                retriveStatement = pointer.getString(pointer.getColumnIndex("appoinmentDiscription"));
 

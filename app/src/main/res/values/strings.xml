@@ -1,3 +1,53 @@
 <resources>
     <string name="app_name">"My Schedule "</string>
+
+
+        <!--Home Screen Strings-->
+        <string name="createAppointment">Create Appointment</string>
+        <string name="viewEdit">View/Edit Appointments</string>
+        <string name="deleteAppointment">Delete Appointment</string>
+        <string name="moveAppointment">Move Appointment</string>
+        <string name="search">Search</string>
+
+        <!--Create Appointment Screen-->
+        <string name="save">Save</string>
+        <string name="createPageTitle">CREATE APPOINTMENT</string>
+        <string name="titleTextView">The title of the appointment</string>
+        <string name="timeTextView">The time of the appointment</string>
+        <string name="detailsTextView">The details of the appointment</string>
+        <string name="titleHint">Enter the title</string>
+        <string name="timeHint">Enter the time</string>
+        <string name="detailsHint">Description</string>
+
+        <string name="thesaurus">Thesaurus</string>
+        <string name="thesaurusSub1">Type a word in the text box bellow and press the \"THESAURUS\" button to find out the synonyms related to that word</string>
+        <string name="thesaurusSub2">Highlight a word from the details section and press \"THESAURUS\" button to see the related synonyms</string>
+        <!--delete appointment popup-->
+        <string name="option">Please select an option from bellow \n\n 1. Delete all appointments for that date \n
+    \n 2. Select appointment to delete \n\n </string>
+        <string name="deleteAll">Delete All</string>
+        <string name="selectToDelete">Select to delete</string>
+
+        <!--delete appointment page-->
+        <string name="changeAppointmentHeading">CHANGE APPOINTMENT HEADING</string>
+        <string name="searchAppointmentHelp">Please enter a keyword and press the "SEARCH" button to search relevant appointments</string>
+        <string name="searchAppointmentHint">Enter a keyword here</string>
+
+        <!--Search appointment page-->
+        <string name="searchAppointmentHeading">SEARCH APPOINTMENT</string>
+        <string name="changeAppointmentHelp">Sub Heading</string>
+        <string name="changeAppointmentHint">Enter the number here</string>
+        <string name="confirm">Button Text</string>
+
+        <!--update popup-->
+        <string name="updateHeading">Please enter the necessary updates in the text boxes bellow.</string>
+        <string name="update">Update</string>
+        <string name="updateAppointment">UPDATE APPOINTMENT</string>
+
+        <!--move popup-->
+        <string name="moveHeading">Please select the date you wish to move the appointment</string>
+        <string name="move">move</string>
+        <string name="moveAppointmentHead">MOVE APPOINTMENT</string>
+
+
 </resources>
