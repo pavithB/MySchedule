@@ -56,13 +56,12 @@ public class ThesaurusActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * This function creates a popup window that will display all the results of the
      * returned XML
      *
      * @param v The current view instance is passed
      */
-    public void resultPopUp (View v) {
+    public void resultPopUp(View v) {
 
         try {
             //get an instance of layout inflater
@@ -73,7 +72,7 @@ public class ThesaurusActivity extends AppCompatActivity {
                     (ViewGroup) findViewById(R.id.popUpList));
 
             //initialize a size for the popup
-            popupWindow = new PopupWindow(layout, 1300, 1600 ,  true);
+            popupWindow = new PopupWindow(layout, 1300, 1600, true);
             // display the popup in the center
             popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
 
@@ -81,17 +80,17 @@ public class ThesaurusActivity extends AppCompatActivity {
             synonymlist = (ListView) layout.findViewById(R.id.synonymList);
 
 		    /*
-		     * If network is available download the xml from the Internet.
+             * If network is available download the xml from the Internet.
 		     * If not toast internet error and close the popup
 		    */
-            if(isNetworkAvailable()){
+            if (isNetworkAvailable()) {
 
                 SitesDownloadTask download = new SitesDownloadTask();
                 download.execute();
-            }else{
+            } else {
 
-                Toast.makeText(getBaseContext() , "No internet Connection. Please connect " +
-                        "your device to the internet and try again" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "No internet Connection. Please connect " +
+                        "your device to the internet and try again", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
 
@@ -112,7 +111,7 @@ public class ThesaurusActivity extends AppCompatActivity {
             //Download the file
             try {
                 DownloadFromUrl("http://thesaurus.altervista.org/thesaurus/v1?word=" + inputWord +
-                        "&language="+ lang +"&%20key="+ THESAURUS_KEY +"&output=xml",
+                                "&language=" + lang + "&%20key=" + THESAURUS_KEY + "&output=xml",
                         openFileOutput("synonyms.xml", Context.MODE_PRIVATE));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -122,7 +121,7 @@ public class ThesaurusActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(Void result){
+        protected void onPostExecute(Void result) {
 
             //setup our Adapter and set it to the ListView.
             thesaurusAdapter = new ThesaurusAdapter(ThesaurusActivity.this, -1,
@@ -134,6 +133,7 @@ public class ThesaurusActivity extends AppCompatActivity {
 
     /**
      * This method will try to download the xml form the internet
+     *
      * @param URL URL to make the request
      * @param fos The name to store the XML file
      */
