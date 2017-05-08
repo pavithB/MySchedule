@@ -18,16 +18,15 @@ public class ViewAppointment extends AppCompatActivity {
 
     AppoinmentDataBase handleDB;
 
-    TextView  viewHead , inform ,viewTopic;
+    TextView viewHead, inform, viewTopic;
 
-    EditText viewAll , selectAppoinment;
+    EditText viewAll, selectAppoinment;
 
-    Button btnSelect ;
+    Button btnSelect;
 
-    String date , header , footer;
+    String date, header, footer;
 
-   static int selection = 999;
-
+    static int selection = 999;
 
 
     @Override
@@ -35,7 +34,7 @@ public class ViewAppointment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_view_appointment);
 
 
@@ -48,21 +47,17 @@ public class ViewAppointment extends AppCompatActivity {
 
         viewAll = (EditText) findViewById(R.id.viewAppointment);
         viewHead = (TextView) findViewById(R.id.viewHead);
-        inform = (TextView) findViewById(R.id.informText) ;
+        inform = (TextView) findViewById(R.id.informText);
         btnSelect = (Button) findViewById(R.id.btnSelectAppointment);
         selectAppoinment = (EditText) findViewById(R.id.selectAppoinment);
-        viewTopic = (TextView)findViewById(R.id.viewTopic);
-
-
-
-
+        viewTopic = (TextView) findViewById(R.id.viewTopic);
 
 
         showappointment();
 
         viewHead.setText("\nAppointments on " + date);
 
-        switch (header){
+        switch (header) {
 
             case "view":
 
@@ -141,32 +136,27 @@ public class ViewAppointment extends AppCompatActivity {
         });*/
 
 
-
-
-
-
     }
-
 
 
     public void selectAction(View view) {
 
 
         selection = Integer.parseInt(selectAppoinment.getText().toString());
-        if(selection == 999){
+        if (selection == 999) {
 
-                    Toast.makeText(getApplicationContext(), "PLEASE SELECT A APPOINTMENT BEFORE PRESS THE BUTTON " , Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "PLEASE SELECT A APPOINTMENT BEFORE PRESS THE BUTTON ", Toast.LENGTH_LONG).show();
 
-        }else {
+        } else {
 
             switch (header) {
 
                 case "view":
 
-                    if(selection == 999) {
+                    if (selection == 999) {
 
-                        Toast.makeText(getApplicationContext(), "PLEASE SELECT A APPOINTMENT BEFORE PRESS THE BUTTON " , Toast.LENGTH_LONG).show();
-                    }else{
+                        Toast.makeText(getApplicationContext(), "PLEASE SELECT A APPOINTMENT BEFORE PRESS THE BUTTON ", Toast.LENGTH_LONG).show();
+                    } else {
 
                         String pretitle = handleDB.deleteSelect(date, selection, true);
                         Intent viewEditSelect = new Intent(this, CreateAppoinment.class);
@@ -185,15 +175,14 @@ public class ViewAppointment extends AppCompatActivity {
 
                     AlertDialog.Builder mbuild = new AlertDialog.Builder(ViewAppointment.this);
                     View mView = getLayoutInflater().inflate(R.layout.confirm_delete, null);
-                     Button confirmNo =(Button) mView.findViewById(R.id.confirmNo);
-                     Button confirmYes =(Button) mView.findViewById(R.id.confirmYes);
+                    Button confirmNo = (Button) mView.findViewById(R.id.confirmNo);
+                    Button confirmYes = (Button) mView.findViewById(R.id.confirmYes);
                     TextView confirmMsg = (TextView) mView.findViewById(R.id.confirmDeleteText);
 
 
-
-                    String confirmDel = handleDB.deleteSelect(date,selection,true);
+                    String confirmDel = handleDB.deleteSelect(date, selection, true);
 //                    Toast.makeText(getApplicationContext(),"123", Toast.LENGTH_LONG).show();
-                    confirmMsg.setText("Would you like to delete event \" "+ confirmDel + " \"" );
+                    confirmMsg.setText("Would you like to delete event \" " + confirmDel + " \"");
 
                     mbuild.setView(mView);
                     AlertDialog dialog = mbuild.create();
@@ -203,12 +192,12 @@ public class ViewAppointment extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
 
-                            handleDB.deleteSelect(date, selection,false);
+                            handleDB.deleteSelect(date, selection, false);
                             showappointment();
                             selectAppoinment.setText("");
-                            Intent cont = new Intent(ViewAppointment.this,ViewAppointment.class);
-                            cont.putExtra("date",date);
-                            cont.putExtra("option",header);
+                            Intent cont = new Intent(ViewAppointment.this, ViewAppointment.class);
+                            cont.putExtra("date", date);
+                            cont.putExtra("option", header);
 
 
                         }
@@ -220,13 +209,9 @@ public class ViewAppointment extends AppCompatActivity {
                         public void onClick(View view) {
                             showappointment();
                             selectAppoinment.setText("");
-                            Intent cont = new Intent(ViewAppointment.this,ViewAppointment.class);
-                            cont.putExtra("date",date);
-                            cont.putExtra("option",header);
-
-
-
-
+                            Intent cont = new Intent(ViewAppointment.this, ViewAppointment.class);
+                            cont.putExtra("date", date);
+                            cont.putExtra("option", header);
 
 
                         }
@@ -240,22 +225,19 @@ public class ViewAppointment extends AppCompatActivity {
 
                     break;
                 case "move":
-                    if(selection==999){
-                        Toast.makeText(getApplicationContext(), "PLEASE SELECT A APPOINTMENT BEFORE PRESS THE BUTTON " , Toast.LENGTH_LONG).show();
-                    }else {
+                    if (selection == 999) {
+                        Toast.makeText(getApplicationContext(), "PLEASE SELECT A APPOINTMENT BEFORE PRESS THE BUTTON ", Toast.LENGTH_LONG).show();
+                    } else {
                         String title = handleDB.deleteSelect(date, selection, true);
-                        Intent moveAppointment = new Intent(this,MoveAppointment.class);
-                        moveAppointment.putExtra("title",title);
-                        moveAppointment.putExtra("date",date);
-                        Toast.makeText(getApplicationContext(), "date: "+date + " tittle"+ title , Toast.LENGTH_LONG).show();
+                        Intent moveAppointment = new Intent(this, MoveAppointment.class);
+                        moveAppointment.putExtra("title", title);
+                        moveAppointment.putExtra("date", date);
+                        Toast.makeText(getApplicationContext(), "date: " + date + " tittle" + title, Toast.LENGTH_LONG).show();
 
                         startActivity(moveAppointment);
 
 
-
-
                     }
-
 
 
                     break;
@@ -264,17 +246,13 @@ public class ViewAppointment extends AppCompatActivity {
             }
 
 
-
         }
 
 
     }
 
 
-
-
-
-    public void showappointment(){
+    public void showappointment() {
 
         String text = (handleDB.viewAppoinment(date));
 
@@ -284,19 +262,19 @@ public class ViewAppointment extends AppCompatActivity {
     }
 
 
-    public void viewEdit(){
+    public void viewEdit() {
         inform.setText("select one appointment and enter the number of the appointment to VIEW or EDIT the appointment ");
         btnSelect.setText("View/Edit");
 
     }
 
-    public void deleteSelect(){
+    public void deleteSelect() {
         inform.setText("select one appointment and enter the number of the appointment to DELETE the appointment ");
         btnSelect.setText("Delete");
 
     }
 
-    public void moveSelect(){
+    public void moveSelect() {
         inform.setText("select one appointment and enter the number of the appointment to MOVE the appointment ");
         btnSelect.setText("Move");
 
