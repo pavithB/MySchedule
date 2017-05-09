@@ -1,7 +1,6 @@
 package com.pavithbuddhima.myschedule;
 
 
-
 /**
  * Created by Pavith Buddhima on 4/7/2017.
  */
