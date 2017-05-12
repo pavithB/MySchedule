@@ -1,11 +1,8 @@
 package com.pavithbuddhima.myschedule;
 
 /**
- *
- *
  * This class could be used to store all the information about a synonym and when needed could
  * be used to retrieve them as well.
- *
  */
 public class Synonym {
 
