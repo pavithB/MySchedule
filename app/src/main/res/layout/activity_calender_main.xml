@@ -4,10 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pavithbuddhima.myschedule.CalenderMain"
-    >
-
-
+    tools:context="com.pavithbuddhima.myschedule.CalenderMain">
 
 
     <CalendarView
@@ -41,9 +38,6 @@
         app:layout_constraintBottom_toTopOf="@+id/viewedit" />
 
 
-
-
-
     <Button
         android:layout_width="162dp"
         android:layout_height="wrap_content"
@@ -61,7 +55,6 @@
         android:layout_marginStart="8dp" />
 
 
-
     <Button
         android:layout_width="162dp"
         android:layout_height="wrap_content"
@@ -77,9 +70,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/delete"
         app:layout_constraintTop_toTopOf="@+id/delete"
         app:layout_constraintVertical_bias="0.0" />
-
-
-
 
 
     <Button
@@ -100,14 +90,14 @@
         app:layout_constraintHorizontal_bias="1.0"
         android:layout_marginStart="8dp" />
 
-<EditText
-    android:layout_width="250dp"
-    android:layout_height="wrap_content"
-    android:id="@+id/searchET"
-    android:hint=" enter search word and press search"
-    app:layout_constraintBaseline_toBaselineOf="@+id/searchBtn"
-    android:layout_marginLeft="7dp"
-    app:layout_constraintLeft_toLeftOf="parent" />
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchET"
+        android:hint=" enter search word and press search"
+        app:layout_constraintBaseline_toBaselineOf="@+id/searchBtn"
+        android:layout_marginLeft="7dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
 
     <Button
