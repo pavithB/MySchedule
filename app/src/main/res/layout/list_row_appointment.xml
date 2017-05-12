@@ -19,7 +19,6 @@
         android:textSize="12sp"
         android:layout_below="@id/titleTextView"
         android:ellipsize="end"
-        android:maxLines="2"
-        />
+        android:maxLines="2" />
 
 </RelativeLayout>
