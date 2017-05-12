@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/synonymsTextView"
@@ -19,6 +19,6 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:layout_below="@id/categoryTextView"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff" />
 
 </RelativeLayout>
