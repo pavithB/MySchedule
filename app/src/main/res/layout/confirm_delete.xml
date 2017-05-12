@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    tools:context="com.pavithbuddhima.myschedule.CalenderMain"
-    >
+    tools:context="com.pavithbuddhima.myschedule.CalenderMain">
 
     <TextView
         android:id="@+id/textView6"
@@ -48,7 +47,6 @@
         android:layout_marginEnd="8dp" />
 
 
-
     <Button
         android:id="@+id/confirmYes"
         android:layout_width="142dp"
@@ -80,6 +78,7 @@
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_bias="1.0" />
+
     <Space
         android:layout_width="0dp"
         android:layout_height="10dp"
