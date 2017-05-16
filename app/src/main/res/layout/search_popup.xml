@@ -11,13 +11,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_margin="10dp"
-            >
+            android:layout_margin="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
                 android:layout_margin="20dp"
                 android:textColor="@color/Honeydew"
                 android:textStyle="bold"
-                android:text="Appointment Title"/>
+                android:text="Appointment Title" />
 
             <TextView
                 android:id="@+id/searchedTitle"
@@ -72,7 +72,7 @@
                 android:textSize="28sp"
                 android:textColor="#00E676"
                 android:textStyle="italic"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginBottom="30dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
