@@ -1,4 +1,4 @@
-<h1>MySchedule<h1>
+<h1 align="center">MySchedule<h1>
 
 <h2><u>The application will be a basic appointment management application, which the user will be using to create appointments with full details describing what is involved in each appointment.</u></h2>
 <br/>
