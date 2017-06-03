@@ -9,9 +9,9 @@
 
 3. Any number of appointments could be created for a single date in the previous subquestion. However, any appointment title should be unique for a single date (even if the details and/or time of the 2 appointments are diﬀerent). I.e. if the user has selected 2nd of March 2012 and he/she attempts to enter 2 appointments with the tile “Meeting with
 
-1
+      1
 
-John”, a pop up error window should be displayed “Appointment Meeting with John already exists, please choose a diﬀerent event title”. Two appointments with the same title are allowed if they occur on diﬀerent dates. 
+      John”, a pop up error window should be displayed “Appointment Meeting with John already exists, please choose a diﬀerent event title”. Two appointments with the same title are allowed if they occur on diﬀerent dates. 
 
 
 4. After the user selects a date in the initial screen, clicking on the Delete Appointment button displays the user with 2 options as buttons: “Delete all appointments for that date” which will delete from the database all the corresponding appointments and “Select appointment to delete” button which will display all of the appointments titles on that date, sorted in ascending order by time and according to the following format:
