@@ -1,8 +1,8 @@
 <h1>MySchedule<h1>
 
 <h2><u>The application will be a basic appointment management application, which the user will be using to create appointments with full details describing what is involved in each appointment.</u></h2>
-
-
+<br/>
+<br/>
 
 1. When the application starts, it presents the user with a calendar displaying the dates of the current month and year and 5 buttons labelled Create Appointment, View/Edit Appointments, Delete Appointment, Move Appointment, Search. The user should be able to select a day by clicking on the corresponding date of the calendar. The user can select a diﬀerent month or year by using the displayed calendar. 
 
